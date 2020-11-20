@@ -20,6 +20,9 @@ import umbro from "../../assets/Works/umbro.jpg";
 import vans from "../../assets/Works/vans.gif";
 import yungn from "../../assets/Works/yungn.jpg";
 
+import "./Home.css";
+import NavBar from "../UiElements/NavBar";
+
 class Home extends Component {
   render() {
     const works = [
@@ -44,42 +47,32 @@ class Home extends Component {
       { photo: vans, title: "vans" },
       { photo: yungn, title: "yungn" },
     ];
-    const overlay = {
-      position: "absolute",
-      bottom: "0",
-      background: "rgba(48, 9, 155, 0.5)",
-      width: "78%",
-      transition: ".5s ease",
-      opacity: "0",
-      color: "rgb(251, 255, 0)",
-      fontSize: "25px",
-      fontWeight: "bolder",
-      padding: "20px",
-      textAlign: "center",
-    };
+
     return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          flexWrap: "wrap",
-        }}
-      >
-        {works.map((work, i) => (
-          <div
-            className="hover"
-            style={{
-              display: "flex",
-              flex: "1 0 20%",
-              justifyContent: "center",
-              margin: "5px",
-            }}
-          >
-            <img style={{ width: "70%" }} src={work.photo} alt="works"></img>
-            <h3 class={overlay}>{work.title}</h3>
-          </div>
-        ))}
-      </div>
+      <>
+        <NavBar />
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "5%",
+            marginTop: "0%",
+            cursor: "crosshair",
+          }}
+        >
+          {works.map((work, i) => (
+            <div key={i} style={{ flex: "1", minWidth: "25%", margin: "20px" }}>
+              <div>
+                <img style={{ width: "100%" }} src={work.photo} alt="works" />
+              </div>
+              {/* <div className="text">{work.title}</div> */}
+            </div>
+          ))}
+        </div>
+      </>
     );
   }
 }
