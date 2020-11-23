@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Admin = (props) => {
@@ -8,6 +8,32 @@ const Admin = (props) => {
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errors, setErrors] = useState({});
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = () => {
+    axios
+      .get("http://localhost:8000/api/product")
+      .then((res) => {
+        setProducts(res.data);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const remove = (_id) => {
+    console.log(_id);
+    axios
+      .delete(`http://localhost:8000/api/product/delete/${_id}`)
+      .then((res) => {
+        console.log(res);
+        fetchProducts();
+      })
+      .catch((err) => console.log(err));
+  };
 
   const create = (e) => {
     e.preventDefault();
@@ -38,7 +64,17 @@ const Admin = (props) => {
         </div>
         <div>
           <label>Type</label>
-          <input type="text" onChange={(e) => setType(e.target.value)}></input>
+          <select
+            name="Type"
+            type="text"
+            onChange={(e) => setType(e.target.value)}
+          >
+            <option value={"misc"}>Select Type</option>
+            <option value={"painting"}>Painting</option>
+            <option value={"installation"}>Installation</option>
+            <option value={"collage"}>Collage</option>
+            <option value={"print"}>Print</option>
+          </select>
         </div>
         <div>
           <label>Description</label>
@@ -56,6 +92,17 @@ const Admin = (props) => {
         </div>
         <button type="submit">Submit</button>
       </form>
+      {/* /////// */}
+
+      {products.map((p, index) => (
+        <div key={p.id}>
+          <h1>{p.name}</h1>
+          <h1>
+            {p.quantity} And Type:{p.type}
+          </h1>
+          <button onClick={(e) => remove(p._id)}>Delete</button>
+        </div>
+      ))}
     </div>
   );
 };
