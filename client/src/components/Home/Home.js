@@ -19,17 +19,28 @@ import sat from "../../assets/Works/sat.jpg";
 import umbro from "../../assets/Works/umbro.jpg";
 import vans from "../../assets/Works/vans.gif";
 import yungn from "../../assets/Works/yungn.jpg";
+import { Redirect } from "react-router-dom";
 
 import "./Home.css";
 import NavBar from "../UiElements/NavBar";
 
 class Home extends Component {
+  state = {
+    redirect: false,
+    itemId: 0,
+  };
+  setRedirect = (id) => {
+    this.setState({ redirect: true, itemId: id });
+  };
+
+  renderRedirect = () => {
+    if (this.state.redirect && this.state.itemId > 0) {
+      return <Redirect to={`/${this.state.itemId}`} />;
+    }
+  };
   render() {
     const works = [
-      { photo: one, title: "twistr" },
-      { photo: redCar, title: "redCar" },
-      { photo: two, title: "two" },
-      { photo: three, title: "three" },
+      { photo: redCar, title: "redCar", id: 1 },
       { photo: eight, title: "eight" },
       { photo: blues, title: "blues" },
       { photo: brap, title: "brap" },
@@ -41,9 +52,12 @@ class Home extends Component {
       { photo: owl, title: "owl" },
       { photo: pional, title: "pional" },
       { photo: playaNegra, title: "playaNegra" },
+      { photo: one, title: "twistr" },
       { photo: pullNbear, title: "pullNbear" },
       { photo: sat, title: "sat" },
+      { photo: three, title: "three" },
       { photo: umbro, title: "umbro" },
+      { photo: two, title: "two" },
       { photo: vans, title: "vans" },
       { photo: yungn, title: "yungn" },
     ];
@@ -66,8 +80,14 @@ class Home extends Component {
           {works.map((work, i) => (
             <div key={i} style={{ flex: "1", minWidth: "25%", margin: "20px" }}>
               <div>
-                <img style={{ width: "100%" }} src={work.photo} alt="works" />
+                <img
+                  style={{ width: "100%" }}
+                  src={work.photo}
+                  alt="works"
+                  onClick={() => this.setRedirect(work.id)}
+                />
               </div>
+              {this.renderRedirect()}
               {/* <div className="text">{work.title}</div> */}
             </div>
           ))}
