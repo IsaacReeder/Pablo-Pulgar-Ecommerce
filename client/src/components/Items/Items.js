@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Items = (props) => {
-  const id = `${props.match.params.itemId}`;
+  const id = Number(`${props.match.params.itemId}`);
   const [products, setProducts] = useState([]);
   const [itemType, setItemType] = useState("");
 
@@ -17,17 +17,17 @@ const Items = (props) => {
   };
 
   useEffect(() => {
-    console.log(id);
     fetchProducts();
     switch (id) {
-      case id === 1:
+      case 1:
         setItemType("print");
         break;
       default:
         return "Missing Item Type";
     }
-  }, [id]);
-  // Switch statement translating itemId into string type
+  }, []);
+
+  // Switch statement translating itemId into string type. Wont work ........
   return (
     <div>
       <h1>asdf{id} </h1>
