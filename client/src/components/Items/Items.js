@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import ImageContainer from "../Images/ImageContainer";
 
 const Items = (props) => {
   const id = Number(`${props.match.params.itemId}`);
@@ -81,6 +82,7 @@ const Items = (props) => {
             {/* JWT Token && <button onClick={(e) => remove(p._id)}>Delete</button> */}
           </div>
         ))}
+      <ImageContainer />
     </div>
   );
 };

@@ -3,9 +3,33 @@ import axios from "axios";
 
 import { API_URL } from "./url";
 
-const ImageContainer = ({ newImage }) => {
+const ImageContainer = ({ newImage, marker }) => {
   const [images, setImages] = useState([]);
   const [fallback, setFallback] = useState("");
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = () => {
+    axios
+      .get("http://localhost:8000/api/product")
+      .then((res) => {
+        setProducts(res.data);
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const remove = (_id) => {
+    console.log(_id);
+    axios
+      .delete(`http://localhost:8000/api/product/delete/${_id}`)
+      .then((res) => {
+        console.log(res);
+        fetchProducts();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  /////
 
   const getImages = async () => {
     try {
@@ -23,6 +47,7 @@ const ImageContainer = ({ newImage }) => {
 
   useEffect(() => {
     getImages();
+    fetchProducts();
   }, [newImage]);
 
   const configureImage = (image) => {
@@ -30,9 +55,19 @@ const ImageContainer = ({ newImage }) => {
   };
 
   console.log(images);
-
+  // Combine below .maps with a .filter to match name of image with name of product
   return (
     <div>
+      {products.map((p, index) => (
+        <div key={p.id}>
+          <h1>{p.name}</h1>
+          <h1>
+            {p.quantity} And Type:{p.type}
+          </h1>
+          <button onClick={(e) => remove(p._id)}>Delete</button>
+        </div>
+      ))}
+      {/* {marker > 0 ? "description with filter"} */}
       {images.length > 0 ? (
         images.map((image) => (
           <img
