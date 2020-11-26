@@ -21,7 +21,6 @@ import vans from "../../assets/Works/vans.gif";
 import yungn from "../../assets/Works/yungn.jpg";
 import { Redirect } from "react-router-dom";
 
-import "./Home.css";
 import NavBar from "../UiElements/NavBar";
 
 class Home extends Component {

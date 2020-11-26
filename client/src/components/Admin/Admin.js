@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
+import ImageContainer from "../Images/ImageContainer";
+import ImageForm from "../Images/ImageForm";
+
 const Admin = (props) => {
   // const { setPage } = props;
   const [name, setName] = useState("");
@@ -9,6 +12,11 @@ const Admin = (props) => {
   const [quantity, setQuantity] = useState("");
   const [errors, setErrors] = useState({});
   const [products, setProducts] = useState([]);
+  const [newImage, setNewImage] = useState([]);
+
+  const handleNewImage = () => {
+    setNewImage(...newImage, "New image!");
+  };
 
   const fetchProducts = () => {
     axios
@@ -103,6 +111,10 @@ const Admin = (props) => {
           <button onClick={(e) => remove(p._id)}>Delete</button>
         </div>
       ))}
+      <div className="App">
+        <ImageContainer newImage={newImage} />
+        <ImageForm handleNewImage={handleNewImage} />
+      </div>
     </div>
   );
 };
