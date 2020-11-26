@@ -9,6 +9,7 @@ const ImageForm = () => {
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
   const [errors, setErrors] = useState({});
   // const [products, setProducts] = useState([]);
@@ -28,18 +29,16 @@ const ImageForm = () => {
     setImage("");
   };
 
-  const handleSubmit = () => {
-    uploadAction(image);
-    setPreview(false);
-    setImage(false);
-    handleNewImage();
-  };
-
   ////
 
   const create = (e) => {
     e.preventDefault();
-    const newProduct = { name, type, description, quantity };
+    uploadAction(image);
+    setPreview(false);
+    setImage(false);
+    handleNewImage();
+    //get previous image name array, copy it, append new image name and overwrite original image name array before upload to Mongodb
+    const newProduct = { name, type, description, quantity, price };
     console.log(newProduct);
 
     axios
@@ -55,55 +54,71 @@ const ImageForm = () => {
       })
       .catch((err) => console.log(err));
   };
+
   //  upload photo, and add photo name to photo name array for types (painting, print, etc.) for .filter.map in the image container
+  //  get concurrently working
   return (
     <div>
       <h1>Welcome</h1>
-      <form onSubmit={create} noValidate autoComplete="off">
-        <div>
-          <label>Name</label>
-          <input type="text" onChange={(e) => setName(e.target.value)}></input>
-          {errors.name ? <h3>{errors.name.properties.message}</h3> : ""}
-        </div>
-        <div>
-          <label>Type</label>
-          <select
-            name="Type"
-            type="text"
-            onChange={(e) => setType(e.target.value)}
-          >
-            <option value={"misc"}>Select Type</option>
-            <option value={"painting"}>Painting</option>
-            <option value={"installation"}>Installation</option>
-            <option value={"collage"}>Collage</option>
-            <option value={"print"}>Print</option>
-          </select>
-        </div>
-        <div>
-          <label>Description</label>
-          <input
-            type="text"
-            onChange={(e) => setDescription(e.target.value)}
-          ></input>
-        </div>
-        <div>
-          <label>Quantity</label>
-          <input
-            type="number"
-            onChange={(e) => setQuantity(e.target.value)}
-          ></input>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
-
-      {/* image form */}
 
       {preview ? (
         <>
-          <button onClick={clearImage}>X</button>
-          <h5>Image Preview</h5>
-          <img src={URL.createObjectURL(image)} alt="Preview of upload"></img>
-          <button onClick={handleSubmit}>Submit</button>
+          <form onSubmit={create} noValidate autoComplete="off">
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                onChange={(e) => setName(e.target.value)}
+              ></input>
+              {errors.name ? <h3>{errors.name.properties.message}</h3> : ""}
+            </div>
+            <div>
+              <label>Type</label>
+              <select
+                name="Type"
+                type="text"
+                onChange={(e) => setType(e.target.value)}
+              >
+                <option value={"misc"}>Select Type</option>
+                <option value={"painting"}>Painting</option>
+                <option value={"installation"}>Installation</option>
+                <option value={"collage"}>Collage</option>
+                <option value={"print"}>Print</option>
+              </select>
+            </div>
+            <div>
+              <label>Description</label>
+              <input
+                type="text"
+                onChange={(e) => setDescription(e.target.value)}
+              ></input>
+            </div>
+            <div>
+              {type === "print" ? (
+                <>
+                  <label>Quantity</label>
+                  <input
+                    type="number"
+                    onChange={(e) => setQuantity(e.target.value)}
+                  ></input>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+            <div>
+              <label>Price</label>
+              <input
+                type="number"
+                onChange={(e) => setPrice(e.target.value)}
+              ></input>
+            </div>
+            {/* <button type="submit">Submit</button> */}
+            <button onClick={clearImage}>X</button>
+            <h5>Image Preview</h5>
+            <img src={URL.createObjectURL(image)} alt="Preview of upload"></img>
+            <button type="submit">Submit</button>
+          </form>
         </>
       ) : (
         <>

@@ -61,9 +61,10 @@ const ImageContainer = ({ newImage, marker }) => {
       {products.map((p, index) => (
         <div key={p.id}>
           <h1>{p.name}</h1>
-          <h1>
-            {p.quantity} And Type:{p.type}
-          </h1>
+          <h3>Q:{p.quantity}</h3>
+          <h3>Type:{p.type}</h3>
+          <h3>{p.description}</h3>
+          <h3>${p.price}</h3>
           <button onClick={(e) => remove(p._id)}>Delete</button>
         </div>
       ))}
