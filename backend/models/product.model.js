@@ -29,6 +29,11 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "Price is required"],
       minlength: [2, "Price must be greater than 9"],
     },
+    pic: {
+      type: String,
+      required: [true, "image name is required"],
+      minlength: [3, "Name must be 3 characters or longer dummy"],
+    },
   },
   { timestamps: true }
 );

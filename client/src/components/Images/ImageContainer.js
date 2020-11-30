@@ -65,6 +65,7 @@ const ImageContainer = ({ newImage, marker }) => {
           <h3>Type:{p.type}</h3>
           <h3>{p.description}</h3>
           <h3>${p.price}</h3>
+          <h3>associated Image: {p.pic}</h3>
           <button onClick={(e) => remove(p._id)}>Delete</button>
         </div>
       ))}

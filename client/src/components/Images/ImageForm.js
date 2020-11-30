@@ -14,6 +14,7 @@ const ImageForm = () => {
   const [errors, setErrors] = useState({});
   // const [products, setProducts] = useState([]);
   const [newImage, setNewImage] = useState([]);
+  const [associatedImages, setAssociatedImages] = useState([]);
 
   const handleNewImage = () => {
     setNewImage(...newImage, "New image!");
@@ -21,7 +22,9 @@ const ImageForm = () => {
 
   const handleImageUpload = (e) => {
     setImage(e.target.files[0]);
+
     setPreview(true);
+    // setAssociatedImages(e.target.name[0]);
   };
 
   const clearImage = () => {
@@ -32,13 +35,18 @@ const ImageForm = () => {
   ////
 
   const create = (e) => {
+    // console.log("target name is " + e.target.value);
     e.preventDefault();
     uploadAction(image);
     setPreview(false);
     setImage(false);
     handleNewImage();
+    // var filename = e.target.value.match(/[^\\/]*$/)[0];
+    // console.log(filename);
+    // setAssociatedImages(associatedImages.concat(filename));
+    const pic = image.name;
     //get previous image name array, copy it, append new image name and overwrite original image name array before upload to Mongodb
-    const newProduct = { name, type, description, quantity, price };
+    const newProduct = { name, type, description, quantity, price, pic };
     console.log(newProduct);
 
     axios
