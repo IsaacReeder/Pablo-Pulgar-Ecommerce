@@ -3,10 +3,11 @@ import axios from "axios";
 
 import { API_URL } from "./url";
 
-const ImageContainer = ({ newImage, marker }) => {
+const ImageContainer = ({ itemType }) => {
   const [images, setImages] = useState([]);
   const [fallback, setFallback] = useState("");
   const [products, setProducts] = useState([]);
+  const [marker, setMarker] = useState(0);
 
   const fetchProducts = () => {
     axios
@@ -48,43 +49,74 @@ const ImageContainer = ({ newImage, marker }) => {
   useEffect(() => {
     getImages();
     fetchProducts();
-  }, [newImage]);
+    itemType !== "" ? setMarker(1) : setMarker(0);
+    console.log(marker);
+  }, [itemType, marker]);
 
   const configureImage = (image) => {
     return API_URL + image;
   };
 
-  console.log(images);
-  // Combine below .maps with a .filter to match name of image with name of product
+  console.log(itemType);
   return (
     <div>
-      {products.map((p, index) => (
-        <div key={p.id}>
-          <h1>{p.name}</h1>
-          <h3>Q:{p.quantity}</h3>
-          <h3>Type:{p.type}</h3>
-          <h3>{p.description}</h3>
-          <h3>${p.price}</h3>
-          <h3>associated Image: {p.pic}</h3>
-          <button onClick={(e) => remove(p._id)}>Delete</button>
+      {marker === 1 ? (
+        <div>
+          {images.length > 0 ? (
+            products
+              .filter((p, i) => p.type === itemType)
+              .map((product) => (
+                <div key={product}>
+                  <h4>{product.name}</h4>
+                  <h4>{product.type}</h4>
+                  {images
+                    .filter((img) => img === product.pic)
+                    .map((image) => (
+                      <img
+                        src={configureImage(image)}
+                        key={image}
+                        alt={image}
+                        width="200"
+                        height="200"
+                        className="image"
+                      />
+                    ))}
+                </div>
+              ))
+          ) : (
+            <>
+              <h1>{fallback}</h1> <hr /> <h3>Upload items</h3>
+            </>
+          )}
         </div>
-      ))}
-      {/* {marker > 0 ? "description with filter"} */}
-      {images.length > 0 ? (
-        images.map((image) => (
-          <img
-            src={configureImage(image)}
-            key={image}
-            alt={image}
-            width="200"
-            height="200"
-            className="image"
-          />
-        ))
       ) : (
-        <>
-          <h1>{fallback}</h1> <hr /> <h3>Upload images in the form below</h3>
-        </>
+        <div>
+          admin
+          {images.length > 0 ? (
+            products.map((product, i) => (
+              <div key={i}>
+                <h4>{product.name}</h4>
+                <h4>{product.type}</h4>
+                {images
+                  .filter((img) => img === product.pic)
+                  .map((image) => (
+                    <img
+                      src={configureImage(image)}
+                      key={image}
+                      alt={image}
+                      width="200"
+                      height="200"
+                      className="image"
+                    />
+                  ))}
+              </div>
+            ))
+          ) : (
+            <>
+              <h1>{fallback}</h1> <hr /> <h3>Upload items</h3>
+            </>
+          )}
+        </div>
       )}
     </div>
   );
