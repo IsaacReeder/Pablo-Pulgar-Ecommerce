@@ -22,6 +22,7 @@ import yungn from "../../assets/Works/yungn.jpg";
 import { Redirect } from "react-router-dom";
 
 import NavBar from "../UiElements/NavBar";
+import "./Home.css";
 
 class Home extends Component {
   state = {
@@ -77,10 +78,13 @@ class Home extends Component {
           }}
         >
           {works.map((work, i) => (
-            <div key={i} style={{ flex: "1", minWidth: "25%", margin: "20px" }}>
-              <div>
+            <div key={i} className="container">
+              <div style={{ display: "flex" }}>
+                <div className="middle">
+                  <div className="text">{work.title}</div>
+                </div>
                 <img
-                  style={{ width: "100%" }}
+                  className="image"
                   src={work.photo}
                   alt="works"
                   onClick={() => this.setRedirect(work.id)}

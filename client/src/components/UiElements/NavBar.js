@@ -34,9 +34,8 @@ const NavBar = () => {
         <div className="logo">
           <img
             style={{
-              marginLeft: "5%",
+              marginLeft: "8rem",
               width: "15rem",
-              // position: "absolute",
               cursor: "grab",
               zIndex: "1000",
             }}
@@ -45,7 +44,6 @@ const NavBar = () => {
           ></img>
         </div>
         <ul className="main-nav">
-          {/* WORKING ON NESTED MENU BELOW*/}
           <li>
             <Button
               aria-controls="simple-menu"
