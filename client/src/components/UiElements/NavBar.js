@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./NavBar.css";
 import signature from "../../assets/signature.png";
@@ -34,100 +35,101 @@ const NavBar = () => {
         <div className="logo">
           <img
             style={{
-              marginLeft: "8rem",
               width: "15rem",
               cursor: "grab",
               zIndex: "1000",
             }}
             src={signature}
-            alt="Pablo Pulgar: Artist, warrior, musician, and financial virtuoso."
+            alt="Pablo Pulgar"
           ></img>
         </div>
-        <ul className="main-nav">
-          <li>
-            <Button
-              aria-controls="simple-menu"
-              aria-haspopup="true"
-              onClick={handleClick}
-            >
-              Works
-            </Button>
-            <Menu
-              id="simple-menu"
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem>
-                {/* //// */}
-                <Button
-                  aria-controls="simple-menu"
-                  aria-haspopup="true"
-                  onClick={handleClickr}
-                >
-                  Fine Art
-                </Button>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorE2}
-                  keepMounted
-                  open={Boolean(anchorE2)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>Nested menu</MenuItem>
-                </Menu>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorE3}
-                  keepMounted
-                  open={Boolean(anchorE3)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>Nested menu</MenuItem>
-                </Menu>
-                {/* //// */}
-              </MenuItem>
-              <MenuItem>
-                {/* //// */}
-                <Button
-                  aria-controls="simple-menu"
-                  aria-haspopup="true"
-                  onClick={handleClick3}
-                >
-                  Collaborations
-                </Button>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorE2}
-                  keepMounted
-                  open={Boolean(anchorE2)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>Installation</MenuItem>
-                  <MenuItem onClick={handleClose}>Paintings</MenuItem>
-                  <MenuItem onClick={handleClose}>Collages</MenuItem>
-                  <MenuItem onClick={handleClose}>Print</MenuItem>
-                </Menu>
-                <Menu
-                  id="simple-menu"
-                  anchorEl={anchorE3}
-                  keepMounted
-                  open={Boolean(anchorE3)}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={handleClose}>Clothing</MenuItem>
-                  <MenuItem onClick={handleClose}>Fanzines</MenuItem>
-                  <MenuItem onClick={handleClose}>Video</MenuItem>
-                </Menu>
-                {/* //// */}
-              </MenuItem>
-            </Menu>
-          </li>
-          <li>
-            <a href="#">About</a>
-          </li>
-        </ul>
+        <div style={{ padding: "5%" }}>
+          <ul className="main-nav">
+            <li>
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick}
+              >
+                Works
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem>
+                  {/* //// */}
+                  <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleClickr}
+                  >
+                    Fine Art
+                  </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorE2}
+                    keepMounted
+                    open={Boolean(anchorE2)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Nested menu</MenuItem>
+                  </Menu>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorE3}
+                    keepMounted
+                    open={Boolean(anchorE3)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Nested menu</MenuItem>
+                  </Menu>
+                  {/* //// */}
+                </MenuItem>
+                <MenuItem>
+                  {/* //// */}
+                  <Button
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleClick3}
+                  >
+                    Collaborations
+                  </Button>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorE2}
+                    keepMounted
+                    open={Boolean(anchorE2)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Installation</MenuItem>
+                    <MenuItem onClick={handleClose}>Paintings</MenuItem>
+                    <MenuItem onClick={handleClose}>Collages</MenuItem>
+                    <MenuItem onClick={handleClose}>Print</MenuItem>
+                  </Menu>
+                  <Menu
+                    id="simple-menu"
+                    anchorEl={anchorE3}
+                    keepMounted
+                    open={Boolean(anchorE3)}
+                    onClose={handleClose}
+                  >
+                    <MenuItem onClick={handleClose}>Clothing</MenuItem>
+                    <MenuItem onClick={handleClose}>Fanzines</MenuItem>
+                    <MenuItem onClick={handleClose}>Video</MenuItem>
+                  </Menu>
+                  {/* //// */}
+                </MenuItem>
+              </Menu>
+            </li>
+            <li>
+              <Link to={`/about`}>About</Link>
+            </li>
+          </ul>
+        </div>
       </header>
     </div>
   );

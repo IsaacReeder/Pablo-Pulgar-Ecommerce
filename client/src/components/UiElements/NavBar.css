@@ -21,17 +21,19 @@ a {
 .logo {
   margin: 0;
   font-size: 1.45em;
+  /* margin-left: 8rem; */
 }
 
 .main-nav {
   margin-top: 5px;
+  width: auto;
 }
 .logo a,
 .main-nav a {
   padding: 10px 15px;
   text-transform: uppercase;
-  text-align: center;
-  display: block;
+  /* text-align: center; */
+  /* display: block; */
 }
 
 .main-nav a {
@@ -46,6 +48,8 @@ a {
 .header {
   /* padding-right: 6em; */
   background-color: #718daa;
+  display: "flex";
+  flex-direction: column;
 }
 
 /* ================================= 
