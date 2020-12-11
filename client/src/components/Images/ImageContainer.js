@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
+import { getCart, setCart } from "../Cart/utils/index";
 import { API_URL } from "./url";
-// import { AppBar } from "@material-ui/core";
 import AppBar from "../UiElements/AppBar";
 
 const ImageContainer = ({ itemType }) => {
@@ -12,6 +13,8 @@ const ImageContainer = ({ itemType }) => {
   const [fallback, setFallback] = useState("");
   const [products, setProducts] = useState([]);
   const [marker, setMarker] = useState(0);
+  const [cartItems, setCartItems] = useState(getCart());
+  const [updatedItems, setUpdatedItems] = useState([]);
   const [look, setCloserLook] = useState({
     productId: "",
     imgName: "",
@@ -54,18 +57,36 @@ const ImageContainer = ({ itemType }) => {
     }
   };
 
-  useEffect(() => {
-    getImages();
-    fetchProducts();
-    itemType !== "" ? setMarker(1) : setMarker(0);
-  }, [itemType, marker]);
-
   const configureImage = (image) => {
     return API_URL + image;
   };
 
   const closerLook = async (_id, img) => {
     setCloserLook({ productId: _id, imgName: img });
+  };
+
+  const addToCart = (item) => {
+    const alreadyInCart = cartItems.findIndex(
+      (product) => product._id === item._id
+    );
+    if (alreadyInCart === -1) {
+      const updatedItems = cartItems.concat({
+        ...item,
+        quantity: 1,
+      });
+
+      setUpdatedItems(updatedItems);
+      setCartItems(updatedItems);
+    } else {
+      const updatedItems = [...cartItems];
+      const item = updatedItems[alreadyInCart];
+      updatedItems[alreadyInCart] = {
+        ...item,
+        quantity: item.quantity + 1,
+      };
+      setUpdatedItems(updatedItems);
+      setCartItems(updatedItems);
+    }
   };
 
   const divStyles = {
@@ -83,6 +104,22 @@ const ImageContainer = ({ itemType }) => {
     maxWidth: "50%",
     margin: "20px",
   };
+
+  useEffect(() => {
+    getImages();
+    fetchProducts();
+    itemType !== "" ? setMarker(1) : setMarker(0);
+  }, [itemType, marker]);
+
+  // useEffect(
+  //   (updatedItems) => {
+  //     setCart(updatedItems);
+  //   },
+  //   [updatedItems]
+  // );
+  useEffect(() => {
+    setCart(updatedItems);
+  }, [updatedItems]);
 
   return (
     <>
@@ -209,6 +246,13 @@ const ImageContainer = ({ itemType }) => {
                           <h3>{product.description}</h3>
                           <h1>${product.price}</h1>
                         </div>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={() => addToCart(product)}
+                        >
+                          Primary
+                        </Button>
                       </div>
                     </Fade>
                   ))}

@@ -53,26 +53,6 @@ export const clearCart = (cartKey = CART_KEY) => {
   }
 };
 
-// Wishlist
-export const setList = (value, listKey = LIST_KEY) => {
-  if (localStorage) {
-    localStorage.setItem(listKey, JSON.stringify(value));
-  }
-};
-
-export const getList = (listKey = LIST_KEY) => {
-  if (localStorage && localStorage.getItem(listKey)) {
-    return JSON.parse(localStorage.getItem(listKey));
-  }
-  return [];
-};
-
-export const clearList = (listKey = CART_KEY) => {
-  if (localStorage) {
-    localStorage.removeItem(listKey);
-  }
-};
-
 // Auth
 export const getToken = (tokenKey = TOKEN_KEY) => {
   if (localStorage && localStorage.getItem(tokenKey)) {

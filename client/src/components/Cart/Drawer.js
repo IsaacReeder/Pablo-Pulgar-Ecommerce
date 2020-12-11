@@ -10,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import Cart from "../Cart/Cart";
 
 const useStyles = makeStyles({
   list: {
@@ -50,7 +51,7 @@ export default function SwipeableTemporaryDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
+      {/* <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>
@@ -70,7 +71,8 @@ export default function SwipeableTemporaryDrawer() {
             <ListItemText primary={text} />
           </ListItem>
         ))}
-      </List>
+      </List> */}
+      <Cart />
     </div>
   );
 
@@ -78,7 +80,7 @@ export default function SwipeableTemporaryDrawer() {
     <div>
       {["bottom"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <Button onClick={toggleDrawer(anchor, true)}>Cart</Button>
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}

@@ -5,6 +5,7 @@ import Home from "./components/Home/Home";
 import Items from "./components/Items/Items";
 import Admin from "./components/Admin/Admin";
 import Update from "./components/Admin/Update";
+import About from "./components/About/About";
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           </Route>
           <Route exact path="/admin">
             <Admin />
+          </Route>
+          <Route exact path="/aboot">
+            <About />
           </Route>
           <Route exact path="/update/:_id">
             <Update />

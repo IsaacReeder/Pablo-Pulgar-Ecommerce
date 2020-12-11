@@ -222,6 +222,7 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </div>
+          {/* Cart */}
           <Drawer />
         </Toolbar>
       </AppBar>
