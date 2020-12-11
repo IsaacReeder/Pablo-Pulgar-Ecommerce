@@ -29,7 +29,7 @@ const About = () => {
             alignContent: "flex-start",
           }}
         >
-          <div>
+          <div style={{ paddingRight: "15%" }}>
             Pablo Pulgar is a Spanish Fartist born in Madrid. He has exhibited
             his work in several galleries in Spain and Netherlands. With a
             background in graffiti and graphic design, his work is in between
@@ -80,12 +80,12 @@ const About = () => {
           </ul>
         </div>
         <div>
-          <img src={sid} style={{ maxWidth: "100%" }} />
+          <img src={sid} style={{ maxWidth: "100%" }} alt="el sid" />
           <div
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "flex-start",
             }}
           >
             <Link href="https://www.instagram.com/ppmf_/" color="disabled">

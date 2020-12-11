@@ -6,6 +6,7 @@ import Items from "./components/Items/Items";
 import Admin from "./components/Admin/Admin";
 import Update from "./components/Admin/Update";
 import About from "./components/About/About";
+import TestCart from "./components/Cart/testCart";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route exact path="/aboot">
             <About />
+          </Route>
+          <Route exact path="/testCart">
+            <TestCart />
           </Route>
           <Route exact path="/update/:_id">
             <Update />

@@ -164,7 +164,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static" color={"transparent"}>
+      <AppBar position="sticky" color={"transparent"}>
         <Toolbar>
           <img
             style={{
