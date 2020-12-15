@@ -3,6 +3,8 @@ import axios from "axios";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import PulseLoader from "react-spinners/PulseLoader";
+import { css } from "@emotion/core";
 
 import { getCart, setCart } from "../Cart/utils/index";
 import { API_URL } from "./url";
@@ -14,16 +16,18 @@ const ImageContainer = ({ itemType }) => {
   const [products, setProducts] = useState([]);
   const [marker, setMarker] = useState(0);
   const [cartItems, setCartItems] = useState(getCart());
-  const [updatedItems, setUpdatedItems] = useState([]);
+  const [updatedItems, setUpdatedItems] = useState(getCart());
   const [look, setCloserLook] = useState({
     productId: "",
     imgName: "",
   });
+  const [loading, setLoading] = useState(true);
 
   const fetchProducts = () => {
     axios
       .get("http://localhost:8000/api/product")
       .then((res) => {
+        setLoading(false);
         setProducts(res.data);
         console.log(res);
       })
@@ -74,9 +78,9 @@ const ImageContainer = ({ itemType }) => {
         ...item,
         quantity: 1,
       });
-
-      setUpdatedItems(updatedItems);
       setCartItems(updatedItems);
+      setUpdatedItems(updatedItems);
+      setCart(updatedItems);
     } else {
       const updatedItems = [...cartItems];
       const item = updatedItems[alreadyInCart];
@@ -84,8 +88,9 @@ const ImageContainer = ({ itemType }) => {
         ...item,
         quantity: item.quantity + 1,
       };
-      setUpdatedItems(updatedItems);
       setCartItems(updatedItems);
+      setUpdatedItems(updatedItems);
+      setCart(updatedItems);
     }
   };
 
@@ -104,11 +109,20 @@ const ImageContainer = ({ itemType }) => {
     maxWidth: "50%",
     margin: "20px",
   };
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+    position: absolute;
+    top-margin: 50%;
+    left-margin: 50%;
+  `;
 
   useEffect(() => {
     getImages();
     fetchProducts();
     itemType !== "" ? setMarker(1) : setMarker(0);
+    setLoading(true);
   }, [itemType, marker]);
 
   // useEffect(
@@ -119,12 +133,14 @@ const ImageContainer = ({ itemType }) => {
   // );
   useEffect(() => {
     setCart(updatedItems);
+    console.log("useEffect with updatedItems: " + JSON.stringify(updatedItems));
   }, [updatedItems]);
 
   return (
     <>
       {/* <NavBar /> */}
       <AppBar />
+      <PulseLoader css={override} size={50} color={"black"} loading={loading} />
       {look.productId === "" ? (
         <Fade>
           <div>
@@ -134,32 +150,48 @@ const ImageContainer = ({ itemType }) => {
                   products
                     .filter((p) => p.type === itemType)
                     .map((product, i) => (
-                      <div style={gridStyles} key={i}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          paddingLeft: "5%",
+                        }}
+                        key={product.id}
+                      >
                         {/* <h1>{product.name}</h1> */}
                         {images
                           .filter((img) => img === product.pic)
-                          .map((image) => (
-                            <div
-                              style={{
-                                display: "flex",
-                                alignContent: "center",
-                                justifyContent: "center",
-                              }}
-                            >
-                              <img
-                                style={{
-                                  width: "auto",
-                                  alignItems: "center",
+                          .map((image) => {
+                            const margin = i % 2 === 0 ? 15 : -15;
+                            console.log(i);
 
-                                  flexWrap: "wrap",
+                            return (
+                              <div
+                                style={{
+                                  display: "flex",
+                                  alignContent: "center",
+                                  justifyContent: "center",
+                                  maxWidth: "70%",
+                                  marginRight: `${margin}rem`,
+                                  marginTop: "10%",
                                 }}
-                                src={configureImage(image)}
-                                key={image}
-                                alt={image}
-                                onClick={() => closerLook(product._id, image)}
-                              />
-                            </div>
-                          ))}
+                              >
+                                <img
+                                  style={{
+                                    width: "auto",
+                                    alignItems: "center",
+                                    maxWidth: "100%",
+                                    // objectFit: "contain",
+                                    flexWrap: "wrap",
+                                  }}
+                                  src={configureImage(image)}
+                                  key={image.id}
+                                  alt={image}
+                                  onClick={() => closerLook(product._id, image)}
+                                />
+                              </div>
+                            );
+                          })}
                       </div>
                     ))
                 ) : (
@@ -170,25 +202,31 @@ const ImageContainer = ({ itemType }) => {
               </div>
             ) : (
               <div style={divStyles}>
-                Admin
+                Admini
                 {images.length > 0 ? (
                   products.map((product, i) => (
-                    <div style={gridStyles} key={i}>
-                      <h4>{product.name}</h4>
-                      <h4>{product.type}</h4>
+                    <div
+                      style={gridStyles}
+                      key={product.id}
+                      style={{ width: "15%" }}
+                    >
                       {images
                         .filter((img) => img === product.pic)
                         .map((image) => (
                           <img
-                            style={{ width: "100%" }}
+                            style={{ maxWidth: "100%" }}
                             src={configureImage(image)}
-                            key={image}
+                            key={image.id}
                             alt={image}
                             width="200"
                             height="200"
                             className="image"
                           />
                         ))}
+                      <h4>{product.name}</h4>
+                      <h4>{product.type}</h4>
+                      <h4>{product.description}</h4>
+                      <h4>${product.price}</h4>
                       <button onClick={(e) => remove(product._id)}>
                         Delete
                       </button>
@@ -215,7 +253,7 @@ const ImageContainer = ({ itemType }) => {
           {products
             .filter((p) => p._id === look.productId)
             .map((product, i) => (
-              <div key={product._id}>
+              <div key={product.id}>
                 {images
                   .filter((img) => img === look.imgName)
                   .map((image, i) => (
@@ -230,7 +268,7 @@ const ImageContainer = ({ itemType }) => {
                         <img
                           style={{ width: "200%", height: "auto" }}
                           src={configureImage(image)}
-                          key={image}
+                          key={image.id}
                           alt={image}
                         />
                         <div

@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/admin">
             <Admin />
           </Route>
-          <Route exact path="/aboot">
+          <Route exact path="/about">
             <About />
           </Route>
           <Route exact path="/testCart">

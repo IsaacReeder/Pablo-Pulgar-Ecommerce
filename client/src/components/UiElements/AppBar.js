@@ -13,6 +13,7 @@ import MailIcon from "@material-ui/icons/Mail";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Drawer from "../Cart/Drawer";
+import NavBar from "./NavBar";
 
 import signature from "../../assets/signature.png";
 
@@ -200,7 +201,7 @@ export default function PrimarySearchAppBar() {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton
+            {/* <IconButton
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
@@ -209,7 +210,8 @@ export default function PrimarySearchAppBar() {
               color="inherit"
             >
               <AccountCircle />
-            </IconButton>
+            </IconButton> */}
+            <NavBar />
           </div>
           <div className={classes.sectionMobile}>
             <IconButton

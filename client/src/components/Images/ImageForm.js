@@ -125,7 +125,9 @@ const ImageForm = () => {
             <button onClick={clearImage}>X</button>
             <h5>Image Preview</h5>
             <img src={URL.createObjectURL(image)} alt="Preview of upload"></img>
-            <button type="submit">Submit</button>
+            <button style={{ padding: "10%" }} type="submit">
+              Submit
+            </button>
           </form>
         </>
       ) : (

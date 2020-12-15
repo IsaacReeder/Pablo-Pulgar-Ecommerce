@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./NavBar.css";
 import signature from "../../assets/signature.png";
 
 import Button from "@material-ui/core/Button";
@@ -31,106 +30,88 @@ const NavBar = () => {
   };
   return (
     <div>
-      <header className="header">
-        <div className="logo">
-          <img
-            style={{
-              width: "15rem",
-              cursor: "grab",
-              zIndex: "1000",
-            }}
-            src={signature}
-            alt="Pablo Pulgar"
-          ></img>
-        </div>
-        <div style={{ padding: "5%" }}>
-          <ul className="main-nav">
-            <li>
+      <ul style={{ listStyleType: "none" }}>
+        <li>
+          <Button
+            aria-controls="simple-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+          >
+            Works
+          </Button>
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorEl}
+            keepMounted
+            open={Boolean(anchorEl)}
+            onClose={handleClose}
+          >
+            <MenuItem>
+              {/* //// */}
               <Button
                 aria-controls="simple-menu"
                 aria-haspopup="true"
-                onClick={handleClick}
+                onClick={handleClickr}
               >
-                Works
+                Fine Art
               </Button>
               <Menu
                 id="simple-menu"
-                anchorEl={anchorEl}
+                anchorEl={anchorE2}
                 keepMounted
-                open={Boolean(anchorEl)}
+                open={Boolean(anchorE2)}
                 onClose={handleClose}
               >
-                <MenuItem>
-                  {/* //// */}
-                  <Button
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    onClick={handleClickr}
-                  >
-                    Fine Art
-                  </Button>
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorE2}
-                    keepMounted
-                    open={Boolean(anchorE2)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Nested menu</MenuItem>
-                  </Menu>
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorE3}
-                    keepMounted
-                    open={Boolean(anchorE3)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Nested menu</MenuItem>
-                  </Menu>
-                  {/* //// */}
-                </MenuItem>
-                <MenuItem>
-                  {/* //// */}
-                  <Button
-                    aria-controls="simple-menu"
-                    aria-haspopup="true"
-                    onClick={handleClick3}
-                  >
-                    Collaborations
-                  </Button>
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorE2}
-                    keepMounted
-                    open={Boolean(anchorE2)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Installation</MenuItem>
-                    <MenuItem onClick={handleClose}>Paintings</MenuItem>
-                    <MenuItem onClick={handleClose}>Collages</MenuItem>
-                    <MenuItem onClick={handleClose}>Print</MenuItem>
-                  </Menu>
-                  <Menu
-                    id="simple-menu"
-                    anchorEl={anchorE3}
-                    keepMounted
-                    open={Boolean(anchorE3)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem onClick={handleClose}>Clothing</MenuItem>
-                    <MenuItem onClick={handleClose}>Fanzines</MenuItem>
-                    <MenuItem onClick={handleClose}>Video</MenuItem>
-                  </Menu>
-                  {/* //// */}
-                </MenuItem>
+                <MenuItem onClick={handleClose}>Nested menu</MenuItem>
               </Menu>
-            </li>
-            <li>
-              <Link to={`/about`}>About</Link>
-            </li>
-          </ul>
-        </div>
-      </header>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorE3}
+                keepMounted
+                open={Boolean(anchorE3)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Nested menu</MenuItem>
+              </Menu>
+              {/* //// */}
+            </MenuItem>
+            <MenuItem>
+              {/* //// */}
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClick3}
+              >
+                Collaborations
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorE2}
+                keepMounted
+                open={Boolean(anchorE2)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Installation</MenuItem>
+                <MenuItem onClick={handleClose}>Paintings</MenuItem>
+                <MenuItem onClick={handleClose}>Collages</MenuItem>
+                <MenuItem onClick={handleClose}>Print</MenuItem>
+              </Menu>
+              <Menu
+                id="simple-menu"
+                anchorEl={anchorE3}
+                keepMounted
+                open={Boolean(anchorE3)}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Clothing</MenuItem>
+                <MenuItem onClick={handleClose}>Fanzines</MenuItem>
+                <MenuItem onClick={handleClose}>Video</MenuItem>
+              </Menu>
+              {/* //// */}
+            </MenuItem>
+          </Menu>
+        </li>
+      </ul>
     </div>
   );
 };
