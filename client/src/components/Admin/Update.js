@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { navigate } from "@reach/router";
 import Button from "@material-ui/core/Button";
-import { green } from "@material-ui/core/colors";
-import { createMuiTheme } from "@material-ui/core/styles";
 
 import { API_URL } from "../Images/url";
 import Appbar from "../UiElements/AppBar";
@@ -43,10 +41,13 @@ const Update = (props) => {
 
   const UpdateProduct = (e) => {
     e.preventDefault();
-    const product = { name, type, description, quantity };
+    const product = { name, type, description, quantity, price };
     console.log("updated");
     axios
-      .put(`http://localhost:8000/api/product/update/${props.id}`, product)
+      .put(
+        `http://localhost:8000/api/product/update/5fd8dcc9c86f8a0498f59bd2`,
+        product
+      )
       .then((res) => {
         if (res.data.errors) {
           // setErrors(res.data.errors);
@@ -87,12 +88,6 @@ const Update = (props) => {
     return API_URL + image;
   };
 
-  const theme = createMuiTheme({
-    palette: {
-      primary: green,
-    },
-  });
-
   return (
     <div>
       <Appbar />
@@ -108,7 +103,9 @@ const Update = (props) => {
                   style={{
                     display: "flex",
                     marginTop: "5%",
-                    backgroundColor: "#e3e1e1",
+                    backgroundColor: "#f9fac8",
+                    borderStyle: "dotted",
+                    padding: "2%",
                     // width: "40%",
                     // flexWrap: "wrap",
                   }}
@@ -141,10 +138,11 @@ const Update = (props) => {
                           style={{
                             // height: "50px",
                             marginBottom: "10%",
-                            maxWidth: "50%",
-                            fontSize: "50px",
+                            minWidth: "100%",
+                            fontSize: "30px",
                             backgroundColor: "transparent",
                             color: "black",
+                            backgroundImage: "url()",
                           }}
                           type="text"
                           onChange={(e) => setName(e.target.value)}
@@ -220,25 +218,11 @@ const Update = (props) => {
                           ""
                         )}
                       </div>
-                      <div>
-                        <label>Type</label>
-                        <select
-                          name="Type"
-                          type="text"
-                          onChange={(e) => setType(e.target.value)}
-                        >
-                          <option value={"misc"}>Select Type</option>
-                          <option value={"painting"}>Painting</option>
-                          <option value={"installation"}>Installation</option>
-                          <option value={"collage"}>Collage</option>
-                          <option value={"print"}>Print</option>
-                        </select>
-                      </div>
 
                       <Button
                         size="large"
                         variant="outlined"
-                        color="primary"
+                        color="black"
                         type="submit"
                       >
                         Update
