@@ -154,15 +154,15 @@ const ImageContainer = ({ itemType }) => {
                         style={{
                           display: "flex",
                           justifyContent: "center",
-                          paddingLeft: "5%",
+                          // maxWidth: "40%",
+                          // paddingLeft: "5%",
                         }}
                         key={product.id}
                       >
-                        {/* <h1>{product.name}</h1> */}
                         {images
                           .filter((img) => img === product.pic)
                           .map((image) => {
-                            const margin = i % 2 === 0 ? 15 : -15;
+                            const margin = i % 2 === 0 ? 25 : -25;
                             console.log(i);
 
                             return (
@@ -171,7 +171,7 @@ const ImageContainer = ({ itemType }) => {
                                   display: "flex",
                                   alignContent: "center",
                                   justifyContent: "center",
-                                  maxWidth: "70%",
+                                  maxWidth: "40%",
                                   marginRight: `${margin}rem`,
                                   marginTop: "10%",
                                 }}
@@ -181,7 +181,6 @@ const ImageContainer = ({ itemType }) => {
                                     width: "auto",
                                     alignItems: "center",
                                     maxWidth: "100%",
-                                    // objectFit: "contain",
                                     flexWrap: "wrap",
                                   }}
                                   src={configureImage(image)}
@@ -189,6 +188,7 @@ const ImageContainer = ({ itemType }) => {
                                   alt={image}
                                   onClick={() => closerLook(product._id, image)}
                                 />
+                                {<h3>{product.name}</h3>}
                               </div>
                             );
                           })}
@@ -253,7 +253,7 @@ const ImageContainer = ({ itemType }) => {
           {products
             .filter((p) => p._id === look.productId)
             .map((product, i) => (
-              <div key={product.id}>
+              <div key={product.id} style={{ margin: "5%" }}>
                 {images
                   .filter((img) => img === look.imgName)
                   .map((image, i) => (
@@ -263,10 +263,11 @@ const ImageContainer = ({ itemType }) => {
                         style={{
                           display: "flex",
                           marginTop: "5%",
+                          width: "40%",
                         }}
                       >
                         <img
-                          style={{ width: "200%", height: "auto" }}
+                          style={{ width: "100%", height: "auto" }}
                           src={configureImage(image)}
                           key={image.id}
                           alt={image}
