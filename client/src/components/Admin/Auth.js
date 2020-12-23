@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import { useForm } from "../Hooks/form-hook";
+import { useHttpClient } from "../Hooks/http-hook";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
