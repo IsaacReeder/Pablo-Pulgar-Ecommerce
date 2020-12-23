@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 
+import { useForm } from "../Hooks/form-hook";
+
 const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
