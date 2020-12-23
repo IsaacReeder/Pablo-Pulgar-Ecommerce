@@ -1,12 +1,13 @@
 import React, { useState, useContext } from "react";
 
-import { useForm } from "../Hooks/form-hook";
-import { useHttpClient } from "../Hooks/http-hook";
+import { useForm } from "../hooks/form-hook";
+import { useHttpClient } from "../hooks/http-hook";
+import { AuthContext } from "../context/auth-context";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  //   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
