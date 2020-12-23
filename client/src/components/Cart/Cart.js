@@ -16,10 +16,6 @@ const Cart = () => {
     setCart(filteredItems);
   };
 
-  // useEffect(() => {
-  //   setCart(updatedItems);
-  // }, [updatedItems]);
-
   return (
     <div style={{ height: "300px" }}>
       Cart

@@ -7,6 +7,7 @@ import Admin from "./components/Admin/Admin";
 import Update from "./components/Admin/Update";
 import About from "./components/About/About";
 import TestCart from "./components/Cart/testCart";
+import Login from "./components/Admin/Auth";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route exact path="/home">
             <Home />
+          </Route>
+          <Route exact path="/login">
+            <Login />
           </Route>
           <Route exact path="/admin">
             <Admin />
