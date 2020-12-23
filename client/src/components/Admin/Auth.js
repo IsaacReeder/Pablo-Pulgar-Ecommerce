@@ -3,6 +3,11 @@ import React, { useState, useContext } from "react";
 import { useForm } from "../hooks/form-hook";
 import { useHttpClient } from "../hooks/http-hook";
 import { AuthContext } from "../context/auth-context";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../util/validators";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
@@ -29,7 +34,6 @@ const Auth = () => {
         {
           ...formState.inputs,
           name: undefined,
-          image: undefined,
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -39,10 +43,6 @@ const Auth = () => {
           ...formState.inputs,
           name: {
             value: "",
-            isValid: false,
-          },
-          image: {
-            value: null,
             isValid: false,
           },
         },
@@ -58,7 +58,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          "http://localhost:8000/api/users/login",
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -76,10 +76,9 @@ const Auth = () => {
         formData.append("email", formState.inputs.email.value);
         formData.append("name", formState.inputs.name.value);
         formData.append("password", formState.inputs.password.value);
-        formData.append("image", formState.inputs.image.value);
-        console.log(formState.inputs.image.value);
+        // console.log(formData.inputs.email);
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          "http://localhost:8000/api/users/signup",
           "POST",
           formData
         );
@@ -93,7 +92,7 @@ const Auth = () => {
     <React.Fragment>
       <div>
         {/* {isLoading && <LoadingSpinner asOverlay />} */}
-        <h2>Login Required</h2>
+        {isLoginMode ? <h2>Login Required</h2> : <h2>Registration Required</h2>}
         <hr />
         <form onSubmit={authSubmitHandler}>
           {!isLoginMode && (
@@ -101,6 +100,8 @@ const Auth = () => {
               element="input"
               id="name"
               type="text"
+              placeholder="Name"
+              validators={[VALIDATOR_REQUIRE()]}
               label="Your Name"
               errorText="Please enter a name."
               onInput={inputHandler}
@@ -111,7 +112,8 @@ const Auth = () => {
             element="input"
             id="email"
             type="email"
-            value="Email"
+            placeholder="Email"
+            validators={[VALIDATOR_EMAIL()]}
             label="E-Mail"
             errorText="Please enter a valid email address."
             onInput={inputHandler}
@@ -120,6 +122,8 @@ const Auth = () => {
             element="input"
             id="password"
             type="password"
+            placeholder="Password"
+            validators={[VALIDATOR_MINLENGTH(6)]}
             label="Password"
             errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}

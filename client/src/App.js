@@ -8,8 +8,12 @@ import Update from "./components/Admin/Update";
 import About from "./components/About/About";
 import TestCart from "./components/Cart/testCart";
 import Login from "./components/Admin/Auth";
+import { useAuth } from "../src/components/hooks/form-hook";
 
 function App() {
+  const { token, login, logout, userId } = useAuth();
+
+  let routes;
   return (
     <div className="App">
       <Router>
