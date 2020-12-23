@@ -7,7 +7,7 @@ import { AuthContext } from "../context/auth-context";
 const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
-  //   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -111,6 +111,7 @@ const Auth = () => {
             element="input"
             id="email"
             type="email"
+            value="Email"
             label="E-Mail"
             errorText="Please enter a valid email address."
             onInput={inputHandler}
