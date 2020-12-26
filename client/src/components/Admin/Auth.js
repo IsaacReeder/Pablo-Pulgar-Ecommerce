@@ -5,6 +5,7 @@ import { useHttpClient } from "../hooks/http-hook";
 import { AuthContext } from "../context/auth-context";
 import ErrorModal from "../UiElements/ErrorModal";
 import ImageUpload from "../FormElements/ImageUpload";
+import Input from "../FormElements/Input";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -105,7 +106,7 @@ const Auth = () => {
         <hr />
         <form onSubmit={authSubmitHandler}>
           {!isLoginMode && (
-            <input
+            <Input
               element="input"
               id="name"
               type="text"
@@ -123,7 +124,7 @@ const Auth = () => {
               errorText="Please provide an image."
             />
           )}
-          <input
+          <Input
             element="input"
             id="email"
             type="email"
@@ -132,7 +133,7 @@ const Auth = () => {
             errorText="Please enter a valid email address."
             onInput={inputHandler}
           />
-          <input
+          <Input
             element="input"
             id="password"
             type="password"
