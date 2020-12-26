@@ -4,6 +4,7 @@ import { useForm } from "../hooks/form-hook";
 import { useHttpClient } from "../hooks/http-hook";
 import { AuthContext } from "../context/auth-context";
 import ErrorModal from "../UiElements/ErrorModal";
+import ImageUpload from "../FormElements/ImageUpload";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -82,8 +83,8 @@ const Auth = () => {
         formData.append("email", formState.inputs.email.value);
         formData.append("name", formState.inputs.name.value);
         formData.append("password", formState.inputs.password.value);
-        formData.append("image", formState.inputs.image.value);
-        console.log(formState.inputs.image.value);
+        // formData.append("image", formState.inputs.image.value);
+        // console.log(formState.inputs.image.value);
         const responseData = await sendRequest(
           "http://localhost:5000/api/users/signup",
           "POST",
@@ -99,7 +100,7 @@ const Auth = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <div className="authentication">
-        {isLoading && <LoadingSpinner asOverlay />}
+        {/* {isLoading && <LoadingSpinner asOverlay />} */}
         <h2>Login Required</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
@@ -114,14 +115,14 @@ const Auth = () => {
               onInput={inputHandler}
             />
           )}
-          {/* {!isLoginMode && (
+          {!isLoginMode && (
             <ImageUpload
               center
               id="image"
               onInput={inputHandler}
               errorText="Please provide an image."
             />
-          )} */}
+          )}
           <input
             element="input"
             id="email"

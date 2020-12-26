@@ -140,7 +140,13 @@ const ImageContainer = ({ itemType }) => {
     <>
       {/* <NavBar /> */}
       <AppBar />
-      <PulseLoader css={override} size={50} color={"black"} loading={loading} />
+      <PulseLoader
+        css={override}
+        size={50}
+        color={"black"}
+        loading={loading}
+        asOverlay
+      />
       {look.productId === "" ? (
         <Fade>
           <div>
