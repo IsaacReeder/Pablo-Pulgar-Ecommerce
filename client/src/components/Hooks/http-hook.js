@@ -19,6 +19,8 @@ export const useHttpClient = () => {
           headers,
           signal: httpAbortCtrl.signal,
         });
+        // .then((res) => res.text())
+        // .then((text) => console.log(text));
 
         const responseData = await response.json();
 

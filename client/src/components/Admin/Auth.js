@@ -6,6 +6,10 @@ import { AuthContext } from "../context/auth-context";
 import ErrorModal from "../UiElements/ErrorModal";
 import ImageUpload from "../FormElements/ImageUpload";
 import Input from "../FormElements/Input";
+import Button from "../FormElements/Button";
+import Card from "../UiElements/Card";
+import PulseLoader from "react-spinners/PulseLoader";
+import { css } from "@emotion/core";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -16,6 +20,7 @@ const Auth = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [loading, setLoading] = useState(true);
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -66,7 +71,7 @@ const Auth = () => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          "http://localhost:8000/api/users/login",
           "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
@@ -77,6 +82,7 @@ const Auth = () => {
           }
         );
         auth.login(responseData.userId, responseData.token);
+        // setLoading(false);
       } catch (err) {}
     } else {
       try {
@@ -84,24 +90,41 @@ const Auth = () => {
         formData.append("email", formState.inputs.email.value);
         formData.append("name", formState.inputs.name.value);
         formData.append("password", formState.inputs.password.value);
-        // formData.append("image", formState.inputs.image.value);
-        // console.log(formState.inputs.image.value);
+        formData.append("image", formState.inputs.image.value);
+        console.log(formState.inputs.image.value);
         const responseData = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          "http://localhost:8000/api/users/signup",
           "POST",
           formData
         );
 
         auth.login(responseData.userId, responseData.token);
       } catch (err) {}
+      setLoading(false);
     }
   };
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+    position: absolute;
+    top-margin: 50%;
+    left-margin: 50%;
+  `;
 
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
-      <div className="authentication">
-        {/* {isLoading && <LoadingSpinner asOverlay />} */}
+      <Card className="authentication">
+        {isLoading && (
+          <PulseLoader
+            css={override}
+            size={50}
+            color={"black"}
+            loading={loading}
+            asOverlay
+          />
+        )}
         <h2>Login Required</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>
@@ -142,14 +165,14 @@ const Auth = () => {
             errorText="Please enter a valid password, at least 6 characters."
             onInput={inputHandler}
           />
-          <button type="submit" disabled={!formState.isValid}>
+          <Button type="submit" disabled={!formState.isValid}>
             {isLoginMode ? "LOGIN" : "SIGNUP"}
-          </button>
+          </Button>
         </form>
-        <button inverse onClick={switchModeHandler}>
+        <Button inverse onClick={switchModeHandler}>
           SWITCH TO {isLoginMode ? "SIGNUP" : "LOGIN"}
-        </button>
-      </div>
+        </Button>
+      </Card>
     </React.Fragment>
   );
 };
