@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { fade, makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -16,6 +16,7 @@ import Drawer from "../Cart/Drawer";
 import NavBar from "./NavBar";
 
 import signature from "../../assets/signature.png";
+import { AuthContext } from "../context/auth-context";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -105,6 +106,8 @@ export default function PrimarySearchAppBar() {
   const handleMobileMenuOpen = (event) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
+
+  const auth = useContext(AuthContext);
 
   const menuId = "primary-search-account-menu";
   const renderMenu = (
@@ -224,6 +227,7 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </div>
+          {auth.isLoggedIn && <button onClick={auth.logout}>LOGOUT</button>}
           {/* Cart */}
           <Drawer />
         </Toolbar>

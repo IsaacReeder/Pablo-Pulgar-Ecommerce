@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
+import { Redirect } from "react-router-dom";
 import { useForm } from "../hooks/form-hook";
 import { useHttpClient } from "../hooks/http-hook";
 import { AuthContext } from "../context/auth-context";
@@ -21,6 +22,7 @@ const Auth = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loading, setLoading] = useState(true);
+  const [navigate, setNavigate] = useState(false);
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -82,7 +84,8 @@ const Auth = () => {
           }
         );
         auth.login(responseData.userId, responseData.token);
-        // setLoading(false);
+        console.log("logged in");
+        setNavigate(true);
       } catch (err) {}
     } else {
       try {
@@ -111,6 +114,13 @@ const Auth = () => {
     top-margin: 50%;
     left-margin: 50%;
   `;
+
+  useEffect(() => {
+    if (auth.isLoggedIn)
+      return () => {
+        <Redirect to="/admin" />;
+      };
+  }, [navigate]);
 
   return (
     <React.Fragment>

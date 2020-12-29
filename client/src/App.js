@@ -6,7 +6,6 @@ import Items from "./components/Items/Items";
 import Admin from "./components/Admin/Admin";
 import Update from "./components/Admin/Update";
 import About from "./components/About/About";
-import TestCart from "./components/Cart/testCart";
 import Login from "./components/Admin/Auth";
 import { AuthContext } from "../src/components/context/auth-context";
 import { useAuth } from "../src/components/hooks/auth-hook";
@@ -19,6 +18,9 @@ function App() {
   if (token) {
     routes = (
       <Switch>
+        <Route exact path="/admin">
+          <Admin />
+        </Route>
         <Route exact path="/">
           <LandingPage />
         </Route>
@@ -28,14 +30,8 @@ function App() {
         <Route exact path="/login">
           <Login />
         </Route>
-        <Route exact path="/admin">
-          <Admin />
-        </Route>
         <Route exact path="/about">
           <About />
-        </Route>
-        <Route exact path="/testCart">
-          <TestCart />
         </Route>
         <Route exact path="/update/:_id">
           <Update />
@@ -55,12 +51,8 @@ function App() {
         <Route exact path="/login">
           <Login />
         </Route>
-
         <Route exact path="/about">
           <About />
-        </Route>
-        <Route exact path="/testCart">
-          <TestCart />
         </Route>
         <Route component={Items} path="/:itemId" />
       </Switch>
@@ -68,21 +60,19 @@ function App() {
   }
   return (
     <div className="App">
-      <Router>
-        <AuthContext.Provider
-          value={{
-            isLoggedIn: !!token,
-            token: token,
-            userId: userId,
-            login: login,
-            logout: logout,
-          }}
-        >
-          <Router>
-            <main>{routes}</main>
-          </Router>
-        </AuthContext.Provider>
-      </Router>
+      <AuthContext.Provider
+        value={{
+          isLoggedIn: !!token,
+          token: token,
+          userId: userId,
+          login: login,
+          logout: logout,
+        }}
+      >
+        <Router>
+          <main>{routes}</main>
+        </Router>
+      </AuthContext.Provider>
     </div>
   );
 }

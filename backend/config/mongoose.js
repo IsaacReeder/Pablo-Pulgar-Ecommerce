@@ -3,7 +3,7 @@ console.log("mongoose.js");
 const mongoose = require("mongoose");
 
 const MONGODB_URI =
-  "mongodb+srv://Isaac:isaac123@cluster0.br37a.mongodb.net/<dbname>?retryWrites=true&w=majority";
+  "mongodb+srv://Isaac:isaac123@cluster0.br37a.mongodb.net/Pablo-Pulgar?retryWrites=true&w=majority";
 module.exports = (db_name) => {
   mongoose
     .connect(MONGODB_URI || `mongodb://localhost/${db_name}`, {
