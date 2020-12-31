@@ -23,17 +23,14 @@ function App() {
   if (token) {
     routes = (
       <Switch>
-        <Route exact path="/admin">
-          <Admin />
-        </Route>
         <Route exact path="/">
           <LandingPage />
         </Route>
+        <Route exact path="/admin">
+          <Admin />
+        </Route>
         <Route exact path="/home">
           <Home />
-        </Route>
-        <Route exact path="/login">
-          <Login />
         </Route>
         <Route exact path="/about">
           <About />
@@ -41,8 +38,8 @@ function App() {
         <Route exact path="/update/:_id">
           <Update />
         </Route>
-        <Redirect to="/" />
-        <Route component={Items} path="/:itemId" />
+        <Redirect to="/admin" />
+        {/* <Route component={Items} path="/:itemId" /> */}
       </Switch>
     );
   } else {
