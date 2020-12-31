@@ -8,7 +8,6 @@ import ImageUpload from "../FormElements/ImageUpload";
 import Input from "../FormElements/Input";
 import Button from "../FormElements/Button";
 import Card from "../UiElements/Card";
-import PulseLoader from "react-spinners/PulseLoader";
 import { css } from "@emotion/core";
 import { Redirect } from "react-router-dom";
 import { useAuth } from "../hooks/auth-hook";
@@ -17,6 +16,7 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../util/validators";
+import LoadingSpinner from "../UiElements/LoadingSpinner";
 
 const Auth = () => {
   const auth = useContext(AuthContext);
@@ -119,15 +119,7 @@ const Auth = () => {
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <Card className="authentication">
-        {isLoading && (
-          <PulseLoader
-            css={override}
-            size={50}
-            color={"black"}
-            loading={loading}
-            asOverlay
-          />
-        )}
+        {isLoading && <LoadingSpinner asOverlay />}
 
         <h2>Login Required</h2>
         <hr />

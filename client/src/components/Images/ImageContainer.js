@@ -8,7 +8,6 @@ import { css } from "@emotion/core";
 
 import { getCart, setCart } from "../Cart/utils/index";
 import { API_URL } from "./url";
-import AppBar from "../UiElements/AppBar";
 
 const ImageContainer = ({ itemType }) => {
   const [images, setImages] = useState([]);
@@ -139,7 +138,6 @@ const ImageContainer = ({ itemType }) => {
   return (
     <>
       {/* <NavBar /> */}
-      <AppBar />
       <PulseLoader
         css={override}
         size={50}
@@ -208,7 +206,7 @@ const ImageContainer = ({ itemType }) => {
               </div>
             ) : (
               <div style={divStyles}>
-                Admini
+                {/* Admin */}
                 {images.length > 0 ? (
                   products.map((product, i) => (
                     <div

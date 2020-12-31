@@ -4,7 +4,6 @@ import { navigate } from "@reach/router";
 import Button from "@material-ui/core/Button";
 
 import { API_URL } from "../Images/url";
-import Appbar from "../UiElements/AppBar";
 
 const Update = (props) => {
   const [name, setName] = useState("");
@@ -90,7 +89,6 @@ const Update = (props) => {
 
   return (
     <div>
-      <Appbar />
       {products
         .filter((p) => p._id === "5fd8dcc9c86f8a0498f59bd2")
         .map((product, i) => (

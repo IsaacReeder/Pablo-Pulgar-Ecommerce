@@ -14,6 +14,7 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import Drawer from "../Cart/Drawer";
 import NavBar from "./NavBar";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 import signature from "../../assets/signature.png";
 import { AuthContext } from "../context/auth-context";
@@ -195,14 +196,21 @@ export default function PrimarySearchAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
+              {auth.isLoggedIn && (
+                <Badge badgeContent={4} color="secondary">
+                  <MailIcon />
+                </Badge>
+              )}
             </IconButton>
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
+              {auth.isLoggedIn && (
+                <Badge badgeContent={17} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              )}
+            </IconButton>
+            <IconButton color="inherit">
+              {auth.isLoggedIn && <ExitToAppIcon onClick={auth.logout} />}
             </IconButton>
             {/* <IconButton
               edge="end"
@@ -227,7 +235,7 @@ export default function PrimarySearchAppBar() {
               <MoreIcon />
             </IconButton>
           </div>
-          {auth.isLoggedIn && <button onClick={auth.logout}>LOGOUT</button>}
+
           {/* Cart */}
           <Drawer />
         </Toolbar>

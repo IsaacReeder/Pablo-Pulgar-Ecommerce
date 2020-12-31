@@ -14,6 +14,7 @@ import About from "./components/About/About";
 import Login from "./components/Admin/Auth";
 import { AuthContext } from "../src/components/context/auth-context";
 import { useAuth } from "../src/components/hooks/auth-hook";
+import AppBar from "./components/UiElements/AppBar";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -22,6 +23,7 @@ function App() {
 
   if (token) {
     routes = (
+      // Logged in
       <Switch>
         <Route exact path="/">
           <LandingPage />
@@ -39,11 +41,12 @@ function App() {
           <Update />
         </Route>
         <Redirect to="/admin" />
-        {/* <Route component={Items} path="/:itemId" /> */}
+        <Route component={Items} path="/:itemId" />
       </Switch>
     );
   } else {
     routes = (
+      // User
       <Switch>
         <Route exact path="/">
           <LandingPage />
@@ -74,6 +77,7 @@ function App() {
         }}
       >
         <Router>
+          <AppBar />
           <main>{routes}</main>
         </Router>
       </AuthContext.Provider>

@@ -18,7 +18,6 @@ class LandingPage extends Component {
     }
   };
   render() {
-    const { redirector } = this.state;
     return (
       <div
         style={{
@@ -37,7 +36,7 @@ class LandingPage extends Component {
           }}
           onClick={this.setRedirect}
           src={signature}
-          alt="Pablo Pulgar: Artist, warrior, musician, and financial virtuoso."
+          alt="Pablo Pulgar, Artist."
         ></img>
         {this.renderRedirect()}
 

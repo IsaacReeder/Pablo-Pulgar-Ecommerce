@@ -1,5 +1,4 @@
 import React from "react";
-import Appbar from "../UiElements/AppBar";
 import sid from "../../assets/Works/sid.jpeg";
 import Popper from "./popper";
 
@@ -17,7 +16,6 @@ const About = () => {
   };
   return (
     <div>
-      <Appbar />
       <div style={{ display: "flex", flexDirection: "row", padding: "10%" }}>
         <div
           name="parent"
