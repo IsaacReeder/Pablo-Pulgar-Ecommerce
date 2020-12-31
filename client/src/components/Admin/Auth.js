@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 
-import { Redirect } from "react-router-dom";
 import { useForm } from "../hooks/form-hook";
 import { useHttpClient } from "../hooks/http-hook";
 import { AuthContext } from "../context/auth-context";
@@ -11,6 +10,8 @@ import Button from "../FormElements/Button";
 import Card from "../UiElements/Card";
 import PulseLoader from "react-spinners/PulseLoader";
 import { css } from "@emotion/core";
+import { Redirect } from "react-router-dom";
+import { useAuth } from "../hooks/auth-hook";
 import {
   VALIDATOR_EMAIL,
   VALIDATOR_MINLENGTH,
@@ -22,8 +23,7 @@ const Auth = () => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loading, setLoading] = useState(true);
-  const [navigate, setNavigate] = useState(false);
-
+  const { token } = useAuth();
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
@@ -84,8 +84,6 @@ const Auth = () => {
           }
         );
         auth.login(responseData.userId, responseData.token);
-        console.log("logged in");
-        setNavigate(true);
       } catch (err) {}
     } else {
       try {
@@ -115,14 +113,9 @@ const Auth = () => {
     left-margin: 50%;
   `;
 
-  useEffect(() => {
-    if (auth.isLoggedIn)
-      return () => {
-        <Redirect to="/admin" />;
-      };
-  }, [navigate]);
-
-  return (
+  return token ? (
+    <Redirect to="/admin" />
+  ) : (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
       <Card className="authentication">
@@ -135,6 +128,7 @@ const Auth = () => {
             asOverlay
           />
         )}
+
         <h2>Login Required</h2>
         <hr />
         <form onSubmit={authSubmitHandler}>

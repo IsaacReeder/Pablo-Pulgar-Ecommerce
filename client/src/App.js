@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import LandingPage from "./components/Landing/LandingPage";
 import Home from "./components/Home/Home";
 import Items from "./components/Items/Items";
@@ -36,6 +41,7 @@ function App() {
         <Route exact path="/update/:_id">
           <Update />
         </Route>
+        <Redirect to="/" />
         <Route component={Items} path="/:itemId" />
       </Switch>
     );
@@ -55,6 +61,7 @@ function App() {
           <About />
         </Route>
         <Route component={Items} path="/:itemId" />
+        <Redirect to="/login" />
       </Switch>
     );
   }
