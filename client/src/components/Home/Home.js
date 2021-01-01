@@ -20,6 +20,12 @@ import umbro from "../../assets/Works/umbro.jpg";
 import vans from "../../assets/Works/vans.gif";
 import yungn from "../../assets/Works/yungn.jpg";
 import { Redirect } from "react-router-dom";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+
+import Typography from "@material-ui/core/Typography";
 
 import NavBar from "../UiElements/NavBar";
 import "./Home.css";
@@ -80,15 +86,21 @@ class Home extends Component {
           {works.map((work, i) => (
             <div key={i} className="container">
               <div style={{ display: "flex" }}>
-                <div className="middle">
-                  <div className="text">{work.title}</div>
-                </div>
-                <img
-                  className="image"
-                  src={work.photo}
-                  alt="works"
-                  onClick={() => this.setRedirect(work.id)}
-                />
+                <Card style={{ maxWidth: "345" }}>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      alt="Contemplative Reptile"
+                      src={work.photo}
+                      title="Contemplative Reptile"
+                    />
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {work.title}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
               </div>
               {this.renderRedirect()}
               {/* <div className="text">{work.title}</div> */}
