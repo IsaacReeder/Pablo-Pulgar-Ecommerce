@@ -4,6 +4,7 @@ import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import PulseLoader from "react-spinners/PulseLoader";
+import LoadingSpinner from "../UiElements/LoadingSpinner";
 import { css } from "@emotion/core";
 
 import { getCart, setCart } from "../Cart/utils/index";
@@ -26,9 +27,9 @@ const ImageContainer = ({ itemType }) => {
     axios
       .get("http://localhost:8000/api/product")
       .then((res) => {
-        setLoading(false);
         setProducts(res.data);
         console.log(res);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   };
@@ -132,16 +133,10 @@ const ImageContainer = ({ itemType }) => {
   return (
     <>
       {/* <NavBar /> */}
-      <PulseLoader
-        css={override}
-        size={50}
-        color={"black"}
-        loading={loading}
-        asOverlay
-      />
       {look.productId === "" ? (
         <Fade>
           <div>
+            {loading && <LoadingSpinner asOverlay />}
             {marker === 1 ? (
               <div style={divStyles}>
                 {images.length > 0 ? (
@@ -201,6 +196,7 @@ const ImageContainer = ({ itemType }) => {
             ) : (
               <div style={divStyles}>
                 {/* Admin */}
+                {loading && <LoadingSpinner asOverlay />}
                 {images.length > 0 ? (
                   products.map((product, i) => (
                     <div
@@ -248,6 +244,7 @@ const ImageContainer = ({ itemType }) => {
             // paddingRight: "10%",
           }}
         >
+          {loading && <LoadingSpinner asOverlay />}
           {products
             .filter((p) => p._id === look.productId)
             .map((product, i) => (
