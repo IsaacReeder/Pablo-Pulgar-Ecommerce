@@ -124,12 +124,6 @@ const ImageContainer = ({ itemType }) => {
     setLoading(true);
   }, [itemType, marker]);
 
-  // useEffect(
-  //   (updatedItems) => {
-  //     setCart(updatedItems);
-  //   },
-  //   [updatedItems]
-  // );
   useEffect(() => {
     setCart(updatedItems);
     console.log("useEffect with updatedItems: " + JSON.stringify(updatedItems));

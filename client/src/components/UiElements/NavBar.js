@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import signature from "../../assets/signature.png";
 
@@ -27,6 +27,12 @@ const NavBar = () => {
     setAnchorEl(null);
     setAnchorE2(null);
     setAnchorE3(null);
+  };
+
+  const history = useHistory();
+  const redirectButtonClick = (id) => {
+    history.push(id);
+    handleClose();
   };
   return (
     <div>
@@ -91,10 +97,18 @@ const NavBar = () => {
                 open={Boolean(anchorE2)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Installation</MenuItem>
-                <MenuItem onClick={handleClose}>Paintings</MenuItem>
-                <MenuItem onClick={handleClose}>Collages</MenuItem>
-                <MenuItem onClick={handleClose}>Print</MenuItem>
+                <MenuItem onClick={() => redirectButtonClick("/2")}>
+                  Installation
+                </MenuItem>
+                <MenuItem onClick={() => redirectButtonClick("/3")}>
+                  Paintings
+                </MenuItem>
+                <MenuItem onClick={() => redirectButtonClick("/4")}>
+                  Collages
+                </MenuItem>
+                <MenuItem onClick={() => redirectButtonClick("/1")}>
+                  Print
+                </MenuItem>
               </Menu>
               <Menu
                 id="simple-menu"
@@ -103,9 +117,15 @@ const NavBar = () => {
                 open={Boolean(anchorE3)}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Clothing</MenuItem>
-                <MenuItem onClick={handleClose}>Fanzines</MenuItem>
-                <MenuItem onClick={handleClose}>Video</MenuItem>
+                <MenuItem onClick={() => redirectButtonClick("/5")}>
+                  Clothing
+                </MenuItem>
+                <MenuItem onClick={() => redirectButtonClick("/6")}>
+                  Fanzines
+                </MenuItem>
+                <MenuItem onClick={() => redirectButtonClick("/7")}>
+                  Video
+                </MenuItem>
               </Menu>
               {/* //// */}
             </MenuItem>
