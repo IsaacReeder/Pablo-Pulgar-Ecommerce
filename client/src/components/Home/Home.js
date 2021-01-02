@@ -1,4 +1,7 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import "./Home.css";
+
 import one from "../../assets/Works/1.gif";
 import redCar from "../../assets/Works/1.jpg";
 import two from "../../assets/Works/2.gif";
@@ -19,56 +22,47 @@ import sat from "../../assets/Works/sat.jpg";
 import umbro from "../../assets/Works/umbro.jpg";
 import vans from "../../assets/Works/vans.gif";
 import yungn from "../../assets/Works/yungn.jpg";
-import { Redirect } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
+import LoadingSpinner from "../UiElements/LoadingSpinner";
 
 import Typography from "@material-ui/core/Typography";
 
 import NavBar from "../UiElements/NavBar";
 import "./Home.css";
 
-class Home extends Component {
-  state = {
-    redirect: false,
-    itemId: 0,
+const Test = () => {
+  const history = useHistory();
+  const handleButtonClick = (id) => {
+    history.push(id);
   };
-  setRedirect = (id) => {
-    this.setState({ redirect: true, itemId: id });
-  };
-
-  renderRedirect = () => {
-    if (this.state.redirect && this.state.itemId > 0) {
-      return <Redirect to={`/${this.state.itemId}`} />;
-    }
-  };
-  render() {
-    const works = [
-      { photo: redCar, title: "redCar", id: 3 },
-      { photo: eight, title: "eight", id: 4 },
-      { photo: blues, title: "blues", id: 6 },
-      { photo: brap, title: "brap", id: 3 },
-      { photo: eopa, title: "eopa", id: 4 },
-      { photo: jagged, title: "jagged", id: 1 },
-      { photo: loopwheel, title: "loopwheel", id: 4 },
-      { photo: migos, title: "migos", id: 4 },
-      { photo: mister, title: "mister", id: 4 },
-      { photo: owl, title: "owl", id: 4 },
-      { photo: pional, title: "pional", id: 4 },
-      { photo: playaNegra, title: "playaNegra", id: 4 },
-      { photo: one, title: "twistr", id: 4 },
-      { photo: pullNbear, title: "pullNbear", id: 4 },
-      { photo: sat, title: "sat", id: 4 },
-      { photo: three, title: "three", id: 4 },
-      { photo: umbro, title: "umbro", id: 4 },
-      { photo: two, title: "two", id: 4 },
-      { photo: vans, title: "vans", id: 4 },
-      { photo: yungn, title: "yungn", id: 4 },
-    ];
-
-    return (
+  const [loading, setLoading] = useState(true);
+  const works = [
+    { photo: redCar, title: "redCar", id: 3 },
+    { photo: eight, title: "eight", id: 4 },
+    { photo: blues, title: "blues", id: 6 },
+    { photo: brap, title: "brap", id: 3 },
+    { photo: eopa, title: "eopa", id: 4 },
+    { photo: jagged, title: "jagged", id: 1 },
+    { photo: loopwheel, title: "loopwheel", id: 4 },
+    { photo: migos, title: "migos", id: 4 },
+    { photo: mister, title: "mister", id: 4 },
+    { photo: owl, title: "owl", id: 4 },
+    { photo: pional, title: "pional", id: 4 },
+    { photo: playaNegra, title: "playaNegra", id: 4 },
+    { photo: one, title: "twistr", id: 4 },
+    { photo: pullNbear, title: "pullNbear", id: 4 },
+    { photo: sat, title: "sat", id: 4 },
+    { photo: three, title: "three", id: 4 },
+    { photo: umbro, title: "umbro", id: 4 },
+    { photo: two, title: "two", id: 4 },
+    { photo: vans, title: "vans", id: 4 },
+    { photo: yungn, title: "yungn", id: 4 },
+  ];
+  return (
+    <div>
       <>
         <NavBar />
 
@@ -83,10 +77,14 @@ class Home extends Component {
             cursor: "crosshair",
           }}
         >
+          {loading && <LoadingSpinner asOverlay />}
           {works.map((work, i) => (
             <div key={i} className="container">
               <div style={{ display: "flex" }}>
-                <Card style={{ maxWidth: "345" }}>
+                <Card
+                  style={{ maxWidth: "345" }}
+                  onClick={() => handleButtonClick(`${work.id}`)}
+                >
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -102,14 +100,22 @@ class Home extends Component {
                   </CardActionArea>
                 </Card>
               </div>
-              {this.renderRedirect()}
+              {/* {this.renderRedirect()} */}
               {/* <div className="text">{work.title}</div> */}
             </div>
           ))}
         </div>
       </>
-    );
-  }
-}
+      <button
+        type="button"
+        style={{ height: "100px" }}
+        value="/3"
+        onClick={handleButtonClick}
+      >
+        Navigate Me!
+      </button>
+    </div>
+  );
+};
 
-export default Home;
+export default Test;
