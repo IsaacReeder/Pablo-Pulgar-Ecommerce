@@ -10,8 +10,9 @@
             typography and color to make digital hand made landscapes with a
             sense for formal art. Pablo is currently based in Spain.
             
-#Technologies used: ReactJS, NodeJS, Axios, CORS, Express, Mongoose, Multer, Bcryptjs, Express-Validator, React-Reveal, Concurrently, JSONWebToken, Mongoose-Unique-Validator, and UUID.
+# Technologies used: ReactJS, NodeJS, Axios, CORS, Express, Mongoose, Multer, Bcryptjs, Express-Validator, React-Reveal, Concurrently, JSONWebToken, Mongoose-Unique-Validator, and UUID.
 
+--------------------------------------------------------------------------------------
   
                                             _______
                                      _,,ad8888888888bba,_
