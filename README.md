@@ -1,6 +1,6 @@
-# Pablo-Pulgar-Ecommerce application. 
+# Pablo Pulgar Paintings and Collage Ecommerce application. 
 
-### Pablo Pulgar is a Spanish artist born in Madrid. He has exhibited his work in several galleries in Spain and the Netherlands. 
+Pablo Pulgar is a Spanish artist born in Madrid. He has exhibited his work in several galleries in Spain and the Netherlands. 
 With a background in graffiti and graphic design, his work lives between the digital and physical world; where the media used 
 plays a critical role. His work ranges from painting and collage to fanzines, photography, and video installations. Fashion, 
 popular culture, and music references are combined heavy usage of typography and vibrant color to create digital hand-made 
