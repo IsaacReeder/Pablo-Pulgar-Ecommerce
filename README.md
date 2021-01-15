@@ -1,13 +1,12 @@
 # Pablo-Pulgar-Ecommerce application. 
 
-            Pablo Pulgar is a Spanish artist born in Madrid. He has exhibited his work in several galleries in Spain and the Netherlands. 
-            With a background in graffiti and graphic design, his work lives between the digital and physical world; where the media used 
-            plays a critical role. His work ranges from painting and collage to fanzines, photography, and video installations. Fashion, 
-            popular culture, and music references are combined heavy usage of typography and vibrant color to create digital hand-made 
-            landscapes with a sense for formal art.
+### Pablo Pulgar is a Spanish artist born in Madrid. He has exhibited his work in several galleries in Spain and the Netherlands. 
+With a background in graffiti and graphic design, his work lives between the digital and physical world; where the media used 
+plays a critical role. His work ranges from painting and collage to fanzines, photography, and video installations. Fashion, 
+popular culture, and music references are combined heavy usage of typography and vibrant color to create digital hand-made 
+landscapes with a sense for formal art.
             
-# Technologies used: ReactJS, NodeJS, Axios, CORS, Express, Mongoose, Multer, Bcryptjs, Express-Validator, React-Reveal, Concurrently, JSONWebToken, 
-# Mongoose-Unique-Validator, and UUID.
+# Technologies used: ReactJS, NodeJS, Axios, CORS, Express, Mongoose, Multer, Bcryptjs, Express-Validator, React-Reveal, Concurrently, JSONWebToken, Mongoose-Unique-Validator, and UUID.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 
