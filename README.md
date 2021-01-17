@@ -6,7 +6,7 @@ plays a critical role. His work ranges from painting and collage to fanzines, ph
 popular culture, and music references are combined heavy usage of typography and vibrant color to create digital hand-made 
 landscapes with a sense for formal art.
             
-# Technologies used: ReactJS, NodeJS, Axios, CORS, Express, Mongoose, Multer, Bcryptjs, Express-Validator, React-Reveal, Concurrently, JSONWebToken, Mongoose-Unique-Validator, and UUID.
+# Technologies used: ReactJS, NodeJS, Context, Axios, CORS, Express, Mongoose, Multer, Bcryptjs, Express-Validator, React-Reveal, Concurrently, JSONWebToken, Mongoose-Unique-Validator, and UUID.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------
 
