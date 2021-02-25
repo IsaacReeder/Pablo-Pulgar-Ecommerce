@@ -13,14 +13,13 @@ import Update from "./components/Admin/Update";
 import About from "./components/About/About";
 import Login from "./components/Admin/Auth";
 import { AuthContext } from "../src/components/context/auth-context";
-import { useAuth } from "../src/components/hooks/auth-hook";
-import AppBar from "./components/UiElements/AppBar";
+import { useAuth } from "../src/components/Hooks/auth-hook";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
 
   let routes;
-
+  // https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html
   if (token) {
     routes = (
       // Logged in
@@ -77,7 +76,6 @@ function App() {
         }}
       >
         <Router>
-          <AppBar />
           <main>{routes}</main>
         </Router>
       </AuthContext.Provider>

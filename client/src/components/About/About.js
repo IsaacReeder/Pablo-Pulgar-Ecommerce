@@ -1,6 +1,7 @@
 import React from "react";
 import sid from "../../assets/Works/sid.jpeg";
 import Popper from "./popper";
+import AppBar from "../UiElements/AppBar";
 
 import Link from "@material-ui/core/Link";
 import EmailIcon from "@material-ui/icons/Email";
@@ -16,6 +17,7 @@ const About = () => {
   };
   return (
     <div>
+      <AppBar />
       <div style={{ display: "flex", flexDirection: "row", padding: "10%" }}>
         <div
           name="parent"
@@ -30,10 +32,9 @@ const About = () => {
           <div style={{ paddingRight: "15%" }}>
             Pablo Pulgar is a Spanish Fartist born in Madrid. He has exhibited
             his work in several galleries in Spain and Netherlands. With a
-            background in graffiti and graphic design, his work is in between
-            the digital world and the physical. A place where the choice of
-            media used plays an important role ranging from painting and collage
-            to fanzines, photography and video installations. Fashion, popular
+            background in graffiti and graphic design, his work is lives between
+            the digital and physical realm; ranging from painting and collage to
+            fanzines, photography and video installations. Fashion, popular
             culture and music references are mixed with heavy usage of
             typography and color to make digital hand made landscapes with a
             sense for formal art. Pablo is currently based in Spain.

@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import PulseLoader from "react-spinners/PulseLoader";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
 import { css } from "@emotion/core";
+// import AppBar from "../UiElements/AppBar";
 
 import { getCart, setCart } from "../Cart/utils/index";
 import { API_URL } from "./url";
@@ -132,7 +133,7 @@ const ImageContainer = ({ itemType }) => {
 
   return (
     <>
-      {/* <NavBar /> */}
+      {/* <AppBar /> */}
       {look.productId === "" ? (
         <Fade>
           <div>

@@ -162,7 +162,7 @@ const Update = (props) => {
                             fontSize: "50px",
                             backgroundColor: "transparent",
                             color: "black",
-                            fontSize: "25px",
+                            // fontSize: "25px",
                           }}
                           type="text"
                           onChange={(e) => setDescription(e.target.value)}
