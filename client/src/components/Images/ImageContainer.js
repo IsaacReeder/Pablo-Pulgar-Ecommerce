@@ -6,7 +6,9 @@ import Button from "@material-ui/core/Button";
 import PulseLoader from "react-spinners/PulseLoader";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
 import { css } from "@emotion/core";
-// import AppBar from "../UiElements/AppBar";
+import AppBar from "../UiElements/AppBar";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ReactImageMagnify from "react-image-magnify";
 
 import { getCart, setCart } from "../Cart/utils/index";
 import { API_URL } from "./url";
@@ -68,6 +70,10 @@ const ImageContainer = ({ itemType }) => {
 
   const closerLook = async (_id, img) => {
     setCloserLook({ productId: _id, imgName: img });
+  };
+
+  const exitCloserLook = async (_id, img) => {
+    setCloserLook({ productId: "", imgName: "" });
   };
 
   const addToCart = (item) => {
@@ -133,7 +139,7 @@ const ImageContainer = ({ itemType }) => {
 
   return (
     <>
-      {/* <AppBar /> */}
+      <AppBar />
       {look.productId === "" ? (
         <Fade>
           <div>
@@ -156,7 +162,7 @@ const ImageContainer = ({ itemType }) => {
                         {images
                           .filter((img) => img === product.pic)
                           .map((image) => {
-                            const margin = i % 2 === 0 ? 25 : -25;
+                            const margin = i % 2 === 0 ? 10 : -10;
                             console.log(i);
 
                             return (
@@ -203,7 +209,7 @@ const ImageContainer = ({ itemType }) => {
                     <div
                       style={gridStyles}
                       key={product.id}
-                      style={{ width: "15%" }}
+                      style={{ flexWrap: "wrap", width: "250px", margin: "1%" }}
                     >
                       {images
                         .filter((img) => img === product.pic)
@@ -213,15 +219,17 @@ const ImageContainer = ({ itemType }) => {
                             src={configureImage(image)}
                             key={image.id}
                             alt={image}
-                            width="200"
-                            height="200"
+                            width="300"
+                            // height="200"
                             className="image"
                           />
                         ))}
+
                       <h4>{product.name}</h4>
                       <h4>{product.type}</h4>
                       <h4>{product.description}</h4>
                       <h4>${product.price}</h4>
+
                       <button onClick={(e) => remove(product._id)}>
                         Delete
                       </button>
@@ -238,58 +246,100 @@ const ImageContainer = ({ itemType }) => {
           </div>
         </Fade>
       ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            // paddingRight: "10%",
-          }}
-        >
-          {loading && <LoadingSpinner asOverlay />}
+        // Closer Look Section
+        <div>
           {products
             .filter((p) => p._id === look.productId)
             .map((product, i) => (
-              <div key={product.id} style={{ margin: "5%" }}>
+              <div
+                key={product.id}
+                alt="div1"
+                style={{
+                  display: "flex",
+                  // justifyContent: "center",
+                  margin: "3rem",
+                  // padding: "5%",
+                }}
+              >
                 {images
                   .filter((img) => img === look.imgName)
                   .map((image, i) => (
-                    <Fade right>
+                    <div
+                      key={i}
+                      alt="div2"
+                      style={{
+                        display: "flex",
+                        alignContent: "center",
+                        flexDirection: "row",
+                        // flexWrap: "wrap",
+                      }}
+                    >
                       <div
-                        key={i}
+                        alt="div3-image"
                         style={{
-                          display: "flex",
-                          marginTop: "5%",
-                          width: "40%",
+                          maxWidth: "700px",
                         }}
                       >
-                        <img
-                          style={{ width: "100%", height: "auto" }}
+                        {/* <img
+                          style={{ width: "100%" }}
                           src={configureImage(image)}
                           key={image.id}
                           alt={image}
-                        />
-                        <div
-                          style={{
-                            display: "flex",
-                            width: "100%",
-                            padding: "5%",
-                            flexDirection: "column",
-                            justifyContent: "space-around",
+                        /> */}
+                        <ReactImageMagnify
+                          style={{ width: "100%" }}
+                          {...{
+                            smallImage: {
+                              alt: "Wristwatch by Ted Baker London",
+                              isFluidWidth: true,
+                              src: configureImage(image),
+                            },
+                            largeImage: {
+                              src: configureImage(image),
+                              width: 1200,
+                              height: 1800,
+                            },
                           }}
-                        >
-                          <h1>{product.name}</h1>
-                          <h3>{product.description}</h3>
-                          <h1>${product.price}</h1>
-                        </div>
+                        />
+                      </div>
+
+                      <div
+                        alt="div4-words+buttons"
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-around",
+                          flexDirection: "column",
+                          padding: "5%",
+                          // alignItems: "center",
+                          // width: "50%",
+                        }}
+                      >
+                        <h1>{product.name}</h1>
+                        <h3>{product.description}</h3>
+                        <h1>${product.price}</h1>
+
                         <Button
+                          style={{ width: "100px" }}
                           variant="contained"
-                          color="primary"
+                          color="secondary"
                           onClick={() => addToCart(product)}
                         >
-                          Primary
+                          Add to cart
                         </Button>
+                        <ArrowBackIcon
+                          onClick={() => closerLook("", "")}
+                          fontSize="large"
+                          style={{ cursor: "pointer" }}
+                        />
                       </div>
-                    </Fade>
+                      {/* <div alt="div5-gorrilla">
+                        <img
+                          src="https://i.imgur.com/RfjKEsP.gif"
+                          style={{ height: "50%", paddingTop: "25%" }}
+                          alt="Gorilla dancing"
+                        ></img>
+                      </div> */}
+                    </div>
                   ))}
               </div>
             ))}

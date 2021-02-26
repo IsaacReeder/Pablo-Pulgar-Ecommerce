@@ -30,7 +30,7 @@ import LoadingSpinner from "../UiElements/LoadingSpinner";
 
 import Typography from "@material-ui/core/Typography";
 
-import NavBar from "../UiElements/NavBar";
+import AppBar from "../UiElements/AppBar";
 import "./Home.css";
 
 const Test = () => {
@@ -64,7 +64,7 @@ const Test = () => {
   return (
     <div>
       <>
-        <NavBar />
+        <AppBar />
 
         <div
           style={{

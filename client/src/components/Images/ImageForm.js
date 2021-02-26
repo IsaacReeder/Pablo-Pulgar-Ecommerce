@@ -78,7 +78,8 @@ const ImageForm = () => {
   //  upload photo, and add photo name to photo name array for types (painting, print, etc.) for .filter.map in the image container
   //  get concurrently working
   return (
-    <div style={{ display: "flex", alignItems: "center", margin: "10%" }}>
+    <div style={{ display: "flex", alignItems: "center", margin: "3%" }}>
+      <h4>Add new items</h4>
       {preview ? (
         <>
           <form
@@ -132,21 +133,7 @@ const ImageForm = () => {
                   ></input>
                   {errors.name ? <h3>{errors.name.properties.message}</h3> : ""}
                 </div>
-                <div>
-                  {/* <label>Type</label> */}
-                  <select
-                    name="Type"
-                    type="text"
-                    placeholder="Type"
-                    onChange={(e) => setType(e.target.value)}
-                  >
-                    <option value={"misc"}>Select Type</option>
-                    <option value={"painting"}>Painting</option>
-                    <option value={"installation"}>Installation</option>
-                    <option value={"collage"}>Collage</option>
-                    <option value={"print"}>Print</option>
-                  </select>
-                </div>
+
                 <div>
                   {/* <label>Description</label> */}
                   <input
@@ -163,6 +150,21 @@ const ImageForm = () => {
                   placeholder="Price"
                   onChange={(e) => setPrice(e.target.value)}
                 ></input>
+              </div>
+              <div>
+                {/* <label>Type</label> */}
+                <select
+                  name="Type"
+                  type="text"
+                  placeholder="Type"
+                  onChange={(e) => setType(e.target.value)}
+                >
+                  <option value={"misc"}>Select Type</option>
+                  <option value={"painting"}>Painting</option>
+                  <option value={"installation"}>Installation</option>
+                  <option value={"collage"}>Collage</option>
+                  <option value={"print"}>Print</option>
+                </select>
               </div>
               <div>
                 {type === "print" ? (
