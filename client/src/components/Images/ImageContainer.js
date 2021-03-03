@@ -160,7 +160,6 @@ const ImageContainer = ({ itemType }) => {
                         .filter((img) => img === product.pic)
                         .map((image) => {
                           const margin = i % 2 === 0 ? 10 : -10;
-                          console.log(i);
 
                           return (
                             <div
