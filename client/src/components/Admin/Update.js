@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useParams } from "react";
 import axios from "axios";
 import { navigate } from "@reach/router";
 import Button from "@material-ui/core/Button";
@@ -18,6 +18,7 @@ const Update = (props) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(true);
   // const id = Number(`${props.match.params.itemId}`);
+  // let { id } = useParams();
 
   useEffect(() => {
     console.log("useEffect fired");
@@ -25,10 +26,12 @@ const Update = (props) => {
     fetchProducts();
     setLoading(true);
     // ${props._id}
+
     axios
-      .get(`http://localhost:8000/api/product/5fd8dcc9c86f8a0498f59bd2`)
+      .get(`http://localhost:8000/api/product/6037f1869e3a890ad5dede5b`)
       .then((res) => {
         console.log(res);
+        // console.log(id);
         setName(res.data.name);
         setType(res.data.type);
         setPrice(res.data.price);
@@ -44,7 +47,7 @@ const Update = (props) => {
     console.log("updated");
     axios
       .put(
-        `http://localhost:8000/api/product/update/5fd8dcc9c86f8a0498f59bd2`,
+        `http://localhost:8000/api/product/update/6037f1869e3a890ad5dede5b`,
         product
       )
       .then((res) => {
@@ -90,7 +93,7 @@ const Update = (props) => {
   return (
     <div>
       {products
-        .filter((p) => p._id === "5fd8dcc9c86f8a0498f59bd2")
+        .filter((p) => p._id === "6037f1869e3a890ad5dede5b")
         .map((product, i) => (
           <div key={product.id} style={{ margin: "5%" }}>
             {images
@@ -108,6 +111,7 @@ const Update = (props) => {
                     // flexWrap: "wrap",
                   }}
                 >
+                  <h3>Update</h3>
                   <img
                     style={{
                       width: "40%",
@@ -136,7 +140,7 @@ const Update = (props) => {
                           style={{
                             // height: "50px",
                             marginBottom: "10%",
-                            minWidth: "100%",
+                            // minWidth: "100%",
                             fontSize: "30px",
                             backgroundColor: "transparent",
                             color: "black",

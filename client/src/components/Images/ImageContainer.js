@@ -12,6 +12,7 @@ import ReactImageMagnify from "react-image-magnify";
 
 import { getCart, setCart } from "../Cart/utils/index";
 import { API_URL } from "./url";
+import "./CloserLook.css";
 
 const ImageContainer = ({ itemType }) => {
   const [images, setImages] = useState([]);
@@ -251,97 +252,115 @@ const ImageContainer = ({ itemType }) => {
           {products
             .filter((p) => p._id === look.productId)
             .map((product, i) => (
-              <div
-                key={product.id}
-                alt="div1"
-                style={{
-                  display: "flex",
-                  // justifyContent: "center",
-                  margin: "3rem",
-                  // padding: "5%",
-                }}
-              >
-                {images
-                  .filter((img) => img === look.imgName)
-                  .map((image, i) => (
-                    <div
-                      key={i}
-                      alt="div2"
-                      style={{
-                        display: "flex",
-                        alignContent: "center",
-                        flexDirection: "row",
-                        // flexWrap: "wrap",
-                      }}
-                    >
-                      <div
-                        alt="div3-image"
-                        style={{
-                          maxWidth: "700px",
-                        }}
-                      >
-                        {/* <img
+              <Fade right>
+                <div
+                  key={product.id}
+                  alt="div1"
+                  style={{
+                    display: "flex",
+                    // justifyContent: "center",
+                    margin: "3rem",
+                    // padding: "5%",
+                  }}
+                >
+                  {images
+                    .filter((img) => img === look.imgName)
+                    .map((image, i) => (
+                      <div key={i} alt="div2" className="ImagePosition">
+                        <div
+                          alt="div3-image"
+                          style={{
+                            maxWidth: "700px",
+                          }}
+                        >
+                          {window.innerWidth > 1450 ? (
+                            <ReactImageMagnify
+                              style={{ width: "100%" }}
+                              {...{
+                                smallImage: {
+                                  alt: "Small product image",
+                                  isFluidWidth: true,
+                                  src: configureImage(image),
+                                },
+                                largeImage: {
+                                  src: configureImage(image),
+                                  width: 1200,
+                                  height: 1800,
+                                },
+                              }}
+                            />
+                          ) : (
+                            <img
+                              style={{ width: "100%" }}
+                              src={configureImage(image)}
+                              key={image.id}
+                              alt={image}
+                            />
+                          )}
+                          {}
+                          {/* <img
                           style={{ width: "100%" }}
                           src={configureImage(image)}
                           key={image.id}
                           alt={image}
                         /> */}
-                        <ReactImageMagnify
-                          style={{ width: "100%" }}
-                          {...{
-                            smallImage: {
-                              alt: "Wristwatch by Ted Baker London",
-                              isFluidWidth: true,
-                              src: configureImage(image),
-                            },
-                            largeImage: {
-                              src: configureImage(image),
-                              width: 1200,
-                              height: 1800,
-                            },
+                          {/* <ReactImageMagnify
+                            style={{ width: "100%" }}
+                            {...{
+                              smallImage: {
+                                alt: "Small product image",
+                                isFluidWidth: true,
+                                src: configureImage(image),
+                              },
+                              largeImage: {
+                                src: configureImage(image),
+                                width: 1200,
+                                height: 1800,
+                              },
+                            }}
+                          /> */}
+                        </div>
+
+                        <div
+                          alt="div4-words+buttons"
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-around",
+                            flexDirection: "column",
+                            padding: "5%",
+                            // alignItems: "center",
+                            width: "20rem",
                           }}
-                        />
-                      </div>
-
-                      <div
-                        alt="div4-words+buttons"
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-around",
-                          flexDirection: "column",
-                          padding: "5%",
-                          // alignItems: "center",
-                          // width: "50%",
-                        }}
-                      >
-                        <h1>{product.name}</h1>
-                        <h3>{product.description}</h3>
-                        <h1>${product.price}</h1>
-
-                        <Button
-                          style={{ width: "100px" }}
-                          variant="contained"
-                          color="secondary"
-                          onClick={() => addToCart(product)}
                         >
-                          Add to cart
-                        </Button>
-                        <ArrowBackIcon
-                          onClick={() => closerLook("", "")}
-                          fontSize="large"
-                          style={{ cursor: "pointer" }}
-                        />
-                      </div>
-                      {/* <div alt="div5-gorrilla">
+                          <h1>{product.name}</h1>
+                          <h3>{product.description}</h3>
+                          <h1>${product.price}</h1>
+
+                          <Button
+                            style={{ width: "100px" }}
+                            variant="contained"
+                            color="secondary"
+                            onClick={() => addToCart(product)}
+                          >
+                            Add to cart
+                          </Button>
+                          <ArrowBackIcon
+                            onClick={() => closerLook("", "")}
+                            fontSize="large"
+                            style={{ cursor: "pointer" }}
+                          />
+                        </div>
+                        {/* <div alt="div5-gorrilla">
                         <img
                           src="https://i.imgur.com/RfjKEsP.gif"
                           style={{ height: "50%", paddingTop: "25%" }}
                           alt="Gorilla dancing"
                         ></img>
                       </div> */}
-                    </div>
-                  ))}
-              </div>
+                      </div>
+                    ))}
+                </div>
+              </Fade>
             ))}
         </div>
       )}

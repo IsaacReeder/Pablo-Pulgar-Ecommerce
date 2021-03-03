@@ -1,0 +1,11 @@
+.ImagePosition {
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+}
+
+@media screen and (max-width: 992px) {
+  .ImagePosition {
+    flex-wrap: wrap;
+  }
+}
