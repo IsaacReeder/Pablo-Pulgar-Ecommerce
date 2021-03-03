@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import ImageContainer from "../Images/ImageContainer";
 import ImageForm from "../Images/ImageForm";
-import AppBar from "../UiElements/AppBar";
+import AdminImageContainer from "../Images/AdminImageContainer";
 
 const Admin = (props) => {
   const [itemType, setItemType] = useState("");
@@ -12,10 +11,9 @@ const Admin = (props) => {
   }, []);
 
   return (
-    <div className="App">
-      <AppBar />
+    <div>
+      <AdminImageContainer />
       <ImageForm />
-      <ImageContainer itemType={itemType} />
     </div>
   );
 };

@@ -3,7 +3,6 @@ import axios from "axios";
 import Fade from "react-reveal/Fade";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import PulseLoader from "react-spinners/PulseLoader";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
 import { css } from "@emotion/core";
 import AppBar from "../UiElements/AppBar";
@@ -145,105 +144,59 @@ const ImageContainer = ({ itemType }) => {
         <Fade>
           <div>
             {loading && <LoadingSpinner asOverlay />}
-            {marker === 1 ? (
-              <div style={divStyles}>
-                {images.length > 0 ? (
-                  products
-                    .filter((p) => p.type === itemType)
-                    .map((product, i) => (
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          // maxWidth: "40%",
-                          // paddingLeft: "5%",
-                        }}
-                        key={product.id}
-                      >
-                        {images
-                          .filter((img) => img === product.pic)
-                          .map((image) => {
-                            const margin = i % 2 === 0 ? 10 : -10;
-                            console.log(i);
-
-                            return (
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignContent: "center",
-                                  justifyContent: "center",
-                                  maxWidth: "40%",
-                                  marginRight: `${margin}rem`,
-                                  marginTop: "10%",
-                                }}
-                              >
-                                <img
-                                  style={{
-                                    width: "auto",
-                                    alignItems: "center",
-                                    maxWidth: "100%",
-                                    flexWrap: "wrap",
-                                  }}
-                                  src={configureImage(image)}
-                                  key={image.id}
-                                  alt={image}
-                                  onClick={() => closerLook(product._id, image)}
-                                />
-                                {<h3>{product.name}</h3>}
-                              </div>
-                            );
-                          })}
-                      </div>
-                    ))
-                ) : (
-                  <>
-                    <h1>{fallback}</h1> <hr /> <h3>Upload items</h3>
-                  </>
-                )}
-              </div>
-            ) : (
-              <div style={divStyles}>
-                {/* Admin */}
-                {loading && <LoadingSpinner asOverlay />}
-                {images.length > 0 ? (
-                  products.map((product, i) => (
+            <div style={divStyles}>
+              {images.length > 0 ? (
+                products
+                  .filter((p) => p.type === itemType)
+                  .map((product, i) => (
                     <div
-                      style={gridStyles}
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
                       key={product.id}
-                      style={{ flexWrap: "wrap", width: "250px", margin: "1%" }}
                     >
                       {images
                         .filter((img) => img === product.pic)
-                        .map((image) => (
-                          <img
-                            style={{ maxWidth: "100%" }}
-                            src={configureImage(image)}
-                            key={image.id}
-                            alt={image}
-                            width="300"
-                            // height="200"
-                            className="image"
-                          />
-                        ))}
+                        .map((image) => {
+                          const margin = i % 2 === 0 ? 10 : -10;
+                          console.log(i);
 
-                      <h4>{product.name}</h4>
-                      <h4>{product.type}</h4>
-                      <h4>{product.description}</h4>
-                      <h4>${product.price}</h4>
-
-                      <button onClick={(e) => remove(product._id)}>
-                        Delete
-                      </button>
-                      <Link to={`/update/${product._id}`}>Update</Link>
+                          return (
+                            <div
+                              style={{
+                                display: "flex",
+                                alignContent: "center",
+                                justifyContent: "center",
+                                maxWidth: "40%",
+                                marginRight: `${margin}rem`,
+                                marginTop: "10%",
+                              }}
+                            >
+                              <img
+                                style={{
+                                  width: "auto",
+                                  alignItems: "center",
+                                  maxWidth: "100%",
+                                  flexWrap: "wrap",
+                                }}
+                                src={configureImage(image)}
+                                key={image.id}
+                                alt={image}
+                                onClick={() => closerLook(product._id, image)}
+                              />
+                              {<h3>{product.name}</h3>}
+                            </div>
+                          );
+                        })}
                     </div>
                   ))
-                ) : (
-                  <>
-                    <h1>{fallback}</h1> <hr /> <h3>Upload items</h3>
-                  </>
-                )}
-              </div>
-            )}
+              ) : (
+                <>
+                  <h1>{fallback}</h1> <hr /> <h3>Upload items</h3>
+                </>
+              )}
+            </div>
           </div>
         </Fade>
       ) : (
@@ -297,28 +250,6 @@ const ImageContainer = ({ itemType }) => {
                               alt={image}
                             />
                           )}
-                          {}
-                          {/* <img
-                          style={{ width: "100%" }}
-                          src={configureImage(image)}
-                          key={image.id}
-                          alt={image}
-                        /> */}
-                          {/* <ReactImageMagnify
-                            style={{ width: "100%" }}
-                            {...{
-                              smallImage: {
-                                alt: "Small product image",
-                                isFluidWidth: true,
-                                src: configureImage(image),
-                              },
-                              largeImage: {
-                                src: configureImage(image),
-                                width: 1200,
-                                height: 1800,
-                              },
-                            }}
-                          /> */}
                         </div>
 
                         <div

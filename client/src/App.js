@@ -14,6 +14,7 @@ import About from "./components/About/About";
 import Login from "./components/Admin/Auth";
 import { AuthContext } from "../src/components/context/auth-context";
 import { useAuth } from "../src/components/Hooks/auth-hook";
+import AdminImageContainer from "./components/Images/AdminImageContainer";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -30,6 +31,11 @@ function App() {
         <Route exact path="/admin">
           <Admin />
         </Route>
+        {/* ////// */}
+        {/* <Route exact path="/Image">
+          <AdminImageContainer />
+        </Route> */}
+        {/* ///// */}
         <Route exact path="/home">
           <Home />
         </Route>
