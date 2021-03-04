@@ -258,7 +258,6 @@ const ImageContainer = ({ itemType }) => {
                             justifyContent: "space-around",
                             flexDirection: "column",
                             padding: "5%",
-                            // alignItems: "center",
                             width: "20rem",
                           }}
                         >
