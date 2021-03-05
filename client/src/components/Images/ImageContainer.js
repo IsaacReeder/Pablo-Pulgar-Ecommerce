@@ -141,7 +141,7 @@ const ImageContainer = ({ itemType }) => {
     <>
       <AppBar />
       {look.productId === "" ? (
-        <Fade>
+        <Fade bottom>
           <div>
             {loading && <LoadingSpinner asOverlay />}
             <div style={divStyles}>
@@ -210,9 +210,7 @@ const ImageContainer = ({ itemType }) => {
                   alt="div1"
                   style={{
                     display: "flex",
-                    // justifyContent: "center",
                     margin: "3rem",
-                    // padding: "5%",
                   }}
                 >
                   {images

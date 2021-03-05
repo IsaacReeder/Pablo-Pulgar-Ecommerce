@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import "./Home.css";
+import AppBar from "../UiElements/AppBar";
 
 import one from "../../assets/Works/1.gif";
 import redCar from "../../assets/Works/1.jpg";
@@ -22,101 +22,115 @@ import sat from "../../assets/Works/sat.jpg";
 import umbro from "../../assets/Works/umbro.jpg";
 import vans from "../../assets/Works/vans.gif";
 import yungn from "../../assets/Works/yungn.jpg";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import LoadingSpinner from "../UiElements/LoadingSpinner";
 
-import Typography from "@material-ui/core/Typography";
-
-import AppBar from "../UiElements/AppBar";
-import "./Home.css";
-
-const Test = () => {
+const HomeNotes = () => {
   const history = useHistory();
+  const [activeHover, setActiveHover] = useState(null);
   const handleButtonClick = (id) => {
     history.push(id);
   };
   const [loading, setLoading] = useState(true);
   const works = [
-    { photo: redCar, title: "redCar", id: 3 },
-    { photo: eight, title: "eight", id: 4 },
-    { photo: blues, title: "blues", id: 6 },
-    { photo: brap, title: "brap", id: 3 },
-    { photo: eopa, title: "eopa", id: 4 },
-    { photo: jagged, title: "jagged", id: 1 },
-    { photo: loopwheel, title: "loopwheel", id: 4 },
-    { photo: migos, title: "migos", id: 4 },
-    { photo: mister, title: "mister", id: 4 },
-    { photo: owl, title: "owl", id: 4 },
-    { photo: pional, title: "pional", id: 4 },
-    { photo: playaNegra, title: "playaNegra", id: 4 },
-    { photo: one, title: "twistr", id: 4 },
-    { photo: pullNbear, title: "pullNbear", id: 4 },
-    { photo: sat, title: "sat", id: 4 },
-    { photo: three, title: "three", id: 4 },
-    { photo: umbro, title: "umbro", id: 4 },
-    { photo: two, title: "two", id: 4 },
-    { photo: vans, title: "vans", id: 4 },
-    { photo: yungn, title: "yungn", id: 4 },
+    { photo: loopwheel, title: "Collage", id: 4 },
+    { photo: one, title: "Collage", id: 4 },
+    { photo: brap, title: "Painting", id: 3 },
+    { photo: playaNegra, title: "Collage", id: 4 },
+    { photo: eight, title: "Collage", id: 4 },
+    { photo: pional, title: "Collage", id: 4 },
+    { photo: vans, title: "Collage", id: 4 },
+    { photo: jagged, title: "Print", id: 1 },
+    { photo: two, title: "Collage", id: 4 },
+    { photo: yungn, title: "Collage", id: 4 },
+    { photo: umbro, title: "Collage", id: 4 },
+    { photo: owl, title: "Collage", id: 4 },
+    { photo: eopa, title: "Collage", id: 4 },
+    { photo: sat, title: "Collage", id: 4 },
+    { photo: migos, title: "Collage", id: 4 },
+    { photo: blues, title: "Fanzines", id: 6 },
+    { photo: mister, title: "Collage", id: 4 },
+    { photo: pullNbear, title: "Collage", id: 4 },
+    { photo: redCar, title: "Painting", id: 3 },
+    { photo: three, title: "Collage", id: 4 },
   ];
+
+  useEffect(() => {
+    setLoading(false);
+  }, []);
+
   return (
     <div>
-      <>
-        <AppBar />
+      <AppBar />
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "5%",
-            marginTop: "0%",
-            cursor: "crosshair",
-          }}
-        >
-          {/* ༼ つ ◕_◕ ༽つ */}
-          {loading && <LoadingSpinner asOverlay />}
-          {works.map((work, i) => (
-            <div key={i} className="container">
-              <div style={{ display: "flex" }}>
-                <Card
-                  style={{ maxWidth: "345" }}
-                  onClick={() => handleButtonClick(`${work.id}`)}
-                >
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      alt="Contemplative Reptile"
-                      src={work.photo}
-                      title="Contemplative Reptile"
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        {work.title}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </div>
-              {/* {this.renderRedirect()} */}
-              {/* <div className="text">{work.title}</div> */}
-            </div>
-          ))}
-        </div>
-      </>
-      <button
-        type="button"
-        style={{ height: "100px" }}
-        value="/3"
-        onClick={handleButtonClick}
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "5%",
+          marginTop: "25px",
+          cursor: "pointer",
+        }}
       >
-        Navigate Me!
-      </button>
+        {/* ༼ つ ◕_◕ ༽つ */}
+        {loading && <LoadingSpinner asOverlay />}
+        {works.map((work, i) => {
+          const margin = i % 2 === 1 ? 0.5 : -0.5;
+          return (
+            <>
+              <div
+                style={{
+                  display: "flex",
+                  position: "relative",
+                  flex: "1",
+                  minWidth: "300px",
+                  margin: "20px",
+                  borderTop: "20px solid #ca4246",
+                  borderBottom: "20px solid #a7489b",
+                  borderLeft: "20px solid #476098",
+                  borderRight: "20px solid #f18f43",
+                  marginTop: `${margin}rem`,
+                }}
+                onClick={() => handleButtonClick(`${work.id}`)}
+              >
+                <img
+                  src={work.photo}
+                  style={{ width: "100%" }}
+                  onMouseOver={() => setActiveHover(work.photo)}
+                  onMouseOut={() => setActiveHover(null)}
+                />
+                {activeHover === work.photo && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 50,
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      margin: "auto",
+                      backgroundColor: "white",
+                      backgroundImage: `url(
+                      "http://www.graphicartsunit.com/images/noise.png"
+                    )`,
+                      color: "blue",
+                      fontSize: "5vw",
+                      borderTop: "10px solid hsl(0, 1%, 39%)",
+                      borderRight: "10px solid hsl(0, 4%, 76%)",
+                      borderBottom: "10px solid hsl(0, 2%, 67%)",
+                      borderLeft: "10px solid hsl(0, 1%, 27%)",
+                      transition: "2s ease-in-out",
+                    }}
+                  >
+                    <p>{work.title}</p>
+                  </div>
+                )}
+              </div>
+            </>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-export default Test;
+export default HomeNotes;

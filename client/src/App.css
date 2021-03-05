@@ -1,6 +1,7 @@
 body {
   background-color: white;
-  background-image: url('http://www.graphicartsunit.com/images/noise.png');
+  background-image: url("http://www.graphicartsunit.com/images/noise.png");
   /* margin: 100px; */
   /* margin-top: 200px; */
+  color: hsl(0, 1%, 27%);
 }

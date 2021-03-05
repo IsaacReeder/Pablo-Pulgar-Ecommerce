@@ -15,6 +15,7 @@ import Login from "./components/Admin/Auth";
 import { AuthContext } from "../src/components/context/auth-context";
 import { useAuth } from "../src/components/Hooks/auth-hook";
 import Checkout from "./components/checkout/Checkout";
+import HomeNotes from "./components/Home/Home";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -34,6 +35,7 @@ function App() {
         <Route exact path="/home">
           <Home />
         </Route>
+
         <Route exact path="/about">
           <About />
         </Route>

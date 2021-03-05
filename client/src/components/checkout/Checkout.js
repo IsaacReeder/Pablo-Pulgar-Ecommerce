@@ -6,6 +6,7 @@ import { calculatePrice, getCart } from "../Cart/utils/index";
 import { API_URL } from "../Images/url";
 // import Cart from "../Cart/Cart";
 import AppBar from "../UiElements/AppBar";
+import Fade from "react-reveal/Fade";
 
 import styled from "@emotion/styled/macro";
 
@@ -94,7 +95,7 @@ function Checkout() {
                 position: "relative",
                 // width: 250,
                 // height: 250,
-                margin: 5,
+                marginLeft: " 5%",
               }}
               onMouseOver={() => setActiveHover(product.pic)}
               onMouseOut={() => setActiveHover(null)}
@@ -114,26 +115,28 @@ function Checkout() {
                       alt={image.name}
                     />
                     {activeHover === image && (
-                      <div
-                        style={{
-                          position: "absolute",
-                          top: 20,
-                          left: "50%",
-                          transform: "translateX(-50%)",
-                          margin: "auto",
-                          backgroundColor: "rgba(0,0,0,0.5)",
-                          color: "white",
-                          fontSize: "5vw",
-                          borderTop: "10px solid red",
-                          borderBottom: "10px solid orange",
-                          borderLeft: "10px solid yellow",
-                          borderRight: "10px solid green",
-                          transition: "2s ease-in-out",
-                        }}
-                      >
-                        <p>?: {product.name}</p>
-                        <p>$: {product.price}</p>
-                      </div>
+                      <Fade right>
+                        <div
+                          style={{
+                            position: "absolute",
+                            top: 20,
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            margin: "auto",
+                            backgroundColor: "rgba(0,0,0,0.5)",
+                            color: "white",
+                            fontSize: "5vw",
+                            borderTop: "20px solid #ca4246",
+                            borderBottom: "20px solid #a7489b",
+                            borderLeft: "20px solid #476098",
+                            borderRight: "20px solid #f18f43",
+                            transition: "2s ease-in-out",
+                          }}
+                        >
+                          <p>?: {product.name}</p>
+                          <p>$: {product.price}</p>
+                        </div>
+                      </Fade>
                     )}
                   </>
                 ))}
@@ -146,6 +149,7 @@ function Checkout() {
           fontSize: "30px",
           display: "flex",
           justifyContent: "center",
+          marginBottom: "3rem",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column" }}>

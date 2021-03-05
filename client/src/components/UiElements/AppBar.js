@@ -16,6 +16,8 @@ import Drawer from "../Cart/Drawer";
 import NavBar from "./NavBar";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
+import "./AppBar.css";
+
 import signature from "../../assets/signature.png";
 import { AuthContext } from "../context/auth-context";
 
@@ -171,28 +173,8 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="sticky" color={"transparent"}>
         <Toolbar>
-          <img
-            style={{
-              width: "15rem",
-              cursor: "grab",
-              zIndex: "1000",
-            }}
-            src={signature}
-            alt="Pablo Pulgar"
-          ></img>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div> */}
+          <text className="gradient-text">Pablo P.</text>
+
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton aria-label="show 4 new mails" color="inherit">
@@ -212,16 +194,6 @@ export default function PrimarySearchAppBar() {
             <IconButton color="inherit">
               {auth.isLoggedIn && <ExitToAppIcon onClick={auth.logout} />}
             </IconButton>
-            {/* <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton> */}
             <NavBar />
           </div>
           <div className={classes.sectionMobile}>
