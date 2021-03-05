@@ -1,0 +1,7 @@
+.standard-view {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  max-width: 40%;
+  margin-top: 10%;
+}

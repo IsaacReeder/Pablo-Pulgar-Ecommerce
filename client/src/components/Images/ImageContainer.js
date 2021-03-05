@@ -160,32 +160,67 @@ const ImageContainer = ({ itemType }) => {
                         .filter((img) => img === product.pic)
                         .map((image) => {
                           const margin = i % 2 === 0 ? 10 : -10;
+                          // {window.innerWidth > 750 ? () : ()}
 
                           return (
-                            <div
-                              style={{
-                                display: "flex",
-                                alignContent: "center",
-                                justifyContent: "center",
-                                maxWidth: "40%",
-                                marginRight: `${margin}rem`,
-                                marginTop: "10%",
-                              }}
-                            >
-                              <img
-                                style={{
-                                  width: "auto",
-                                  alignItems: "center",
-                                  maxWidth: "100%",
-                                  flexWrap: "wrap",
-                                }}
-                                src={configureImage(image)}
-                                key={image.id}
-                                alt={image}
-                                onClick={() => closerLook(product._id, image)}
-                              />
-                              {<h3>{product.name}</h3>}
-                            </div>
+                            <>
+                              {window.innerWidth > 750 ? (
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignContent: "center",
+                                    justifyContent: "center",
+                                    maxWidth: "40%",
+                                    marginRight: `${margin}rem`,
+                                    marginTop: "10%",
+                                  }}
+                                >
+                                  <img
+                                    style={{
+                                      width: "auto",
+                                      alignItems: "center",
+                                      maxWidth: "100%",
+                                      flexWrap: "wrap",
+                                    }}
+                                    src={configureImage(image)}
+                                    key={image.id}
+                                    alt={image}
+                                    onClick={() =>
+                                      closerLook(product._id, image)
+                                    }
+                                  />
+                                  {<h3>{product.name}</h3>}
+                                </div>
+                              ) : (
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    alignContent: "center",
+                                    justifyContent: "center",
+                                    flexWrap: "wrap",
+                                    maxWidth: "80%",
+                                    // marginRight: `${margin}rem`,
+                                    marginTop: "10%",
+                                  }}
+                                >
+                                  <img
+                                    style={{
+                                      width: "auto",
+                                      alignItems: "center",
+                                      maxWidth: "100%",
+                                      flexWrap: "wrap",
+                                    }}
+                                    src={configureImage(image)}
+                                    key={image.id}
+                                    alt={image}
+                                    onClick={() =>
+                                      closerLook(product._id, image)
+                                    }
+                                  />
+                                  {<h3>{product.name}</h3>}
+                                </div>
+                              )}
+                            </>
                           );
                         })}
                     </div>
